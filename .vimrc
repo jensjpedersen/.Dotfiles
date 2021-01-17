@@ -141,7 +141,7 @@ nnoremap <silent> <esc><esc> :noh<return><esc>
 
 " fzf mappings
 nnoremap <leader>p :Files<return>
-nnoremap <leader>r :Rg<return>
+nnoremap <leader>r :Rg<CR>
 nnoremap <leader>g :BLines<return>
 nnoremap <leader>h :History<CR>
 
