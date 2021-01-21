@@ -1,5 +1,7 @@
 #!/bin/zsh
 xsetwacom set "HUION Huion Tablet_H950P Pen stylus" MapToOutput eDP1
+xsetwacom set "HUION Huion Tablet_H950P Pen stylus" MapToOutput 960x600+960+220
+
 
 xsetwacom set "HUION Huion Tablet_H950P Pad pad" Button 8 key "down down down down down down down down down down"
 xsetwacom set "HUION Huion Tablet_H950P Pad pad" Button 3 key "right right right right right right right right right right"
