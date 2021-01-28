@@ -27,7 +27,6 @@ Plug 'benmills/vimux' "vim tmux compatibility
 Plug 'ap/vim-css-color' "Show hex colors
 call plug#end()
 
-
 set nocompatible
 filetype plugin on
 syntax on

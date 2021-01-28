@@ -99,7 +99,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-set $term --no-startup-id alacritty
+set $term --no-startup-id termite
 # start a terminal
 bindsym $mod+Return exec $term 
 
@@ -213,6 +213,7 @@ set $ws15 "15:   "
 set $ws16 "16: "
 set $ws17 "17:   "
 
+#==================== Surface ====================   
 #workspace $ws1 output HDMI1 
 #workspace $ws2 output HDMI1 
 #workspace $ws3 output HDMI1
@@ -231,6 +232,26 @@ set $ws17 "17:   "
 #workspace $ws15 output HDMI1
 #workspace $ws16 output HDMI1
 #workspace $ws17 output eDP1
+
+# ==================== Thinkpad ====================  
+workspace $ws1 output DP-1-1 
+workspace $ws2 output DP-1-1 
+workspace $ws3 output DP-1-1
+workspace $ws4 output DP-1-1
+workspace $ws5 output DP-1-1
+workspace $ws6 output LVDS1
+workspace $ws7 output LVDS1
+workspace $ws8 output LVDS1
+workspace $ws9 output LVDS1
+workspace $ws10 output LVDS1
+
+workspace $ws11 output DP-1-1
+workspace $ws12 output DP-1-1
+workspace $ws13 output DP-1-1
+workspace $ws14 output DP-1-1
+workspace $ws15 output DP-1-1
+workspace $ws16 output DP-1-1
+workspace $ws17 output LVDS1
 
 # switch to workspace
 bindsym $mod+y workspace number $ws1
@@ -513,7 +534,7 @@ mode "$launch"{
 
 
 # ==================== Move workspaces ====================
-set $mode_move_workspaces [F]ysikk  [I]nformatikk
+set $mode_move_workspaces [F]ysikk  [I]nformatikk [G]eologi
 mode "$mode_move_workspaces" {
      bindsym f exec --no-startup-id i3-msg rename workspace "1" to "f1";\
                exec --no-startup-id i3-msg rename workspace "2" to "f2";\
@@ -558,6 +579,28 @@ mode "$mode_move_workspaces" {
                      exec --no-startup-id i3-msg rename workspace "i8" to "8";\
                      exec --no-startup-id i3-msg rename workspace "i9" to "9";\
                      exec --no-startup-id i3-msg rename workspace "i10" to "10"
+
+     bindsym g exec --no-startup-id i3-msg rename workspace "1" to "g1";\
+               exec --no-startup-id i3-msg rename workspace "2" to "g2";\
+               exec --no-startup-id i3-msg rename workspace "3" to "g3";\
+               exec --no-startup-id i3-msg rename workspace "4" to "g4";\
+               exec --no-startup-id i3-msg rename workspace "5" to "g5";\
+               exec --no-startup-id i3-msg rename workspace "6" to "g6";\
+               exec --no-startup-id i3-msg rename workspace "7" to "g7";\
+               exec --no-startup-id i3-msg rename workspace "8" to "g8";\
+               exec --no-startup-id i3-msg rename workspace "9" to "g9";\
+               exec --no-startup-id i3-msg rename workspace "10" to "g10"
+
+     bindsym Shift+g exec --no-startup-id i3-msg rename workspace "g1" to "1";\
+                     exec --no-startup-id i3-msg rename workspace "g2" to "2";\
+                     exec --no-startup-id i3-msg rename workspace "g3" to "3";\
+                     exec --no-startup-id i3-msg rename workspace "g4" to "4";\
+                     exec --no-startup-id i3-msg rename workspace "g5" to "5";\
+                     exec --no-startup-id i3-msg rename workspace "g6" to "6";\
+                     exec --no-startup-id i3-msg rename workspace "g7" to "7";\
+                     exec --no-startup-id i3-msg rename workspace "g8" to "8";\
+                     exec --no-startup-id i3-msg rename workspace "g9" to "9";\
+                     exec --no-startup-id i3-msg rename workspace "g10" to "10"
 #
     # back to normal: Enter or Escape
     bindsym Return mode "default"

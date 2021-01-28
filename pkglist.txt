@@ -38,3 +38,4 @@ vifm
 vlc
 xournalpp
 zathura
+okular
