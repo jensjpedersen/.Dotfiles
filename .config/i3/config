@@ -167,7 +167,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+Shift+s layout stacking
-bindsym $mod+w layout stacking
+#bindsym $mod+w layout stacking
 #bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -352,9 +352,6 @@ mode "resize" {
 }
 bindsym $mod+Escape mode "resize"
 
-# Test
-#bindsym $mod+b  0xfe03
-#bindsym Mod1+b keysym 0xfe03
 
 # ------------------------- workspace color ------------------------------------------
 #
@@ -478,7 +475,7 @@ bindsym $mod+z exec xinput --map-to-output "NTRG0001:01 1B96:1B05 Pen (0)" eDP1 
 # ====================== User key bindings =====================
 bindsym $mod+x exec xournalpp
 bindsym $mod+t exec com.toggl.TogglDesktop
-bindsym $mod+b exec chromium
+bindsym $mod+w exec brave
 
 # Terminal applications 
 bindsym $mod+n     exec $term -e ~/.config/vifm/scripts/vifmrun
@@ -486,21 +483,35 @@ bindsym $mod+m     exec $term -e calcurse
 bindsym $mod+comma exec $term -e vim 
 
 # Open course direcories
-set $dir1 ~/Onedrive/FAM/Master/FYS-STK4155-AnvendtDataanalyseOgMaskinlæring
-set $dir2 ~/Onedrive/FAM/Master/FYS4711-StrålingOgDosimetri/Forelesninger
-set $dir3 ~/Onedrive/FAM/Master/FYS4250-BiomedisinskIstumentering/Forelesninger
+set $dir1 ~/Sync/FAM/Master/FYS-STK4155-AnvendtDataanalyseOgMaskinlæring
+set $dir2 ~/Sync/FAM/Master/FYS4711-StrålingOgDosimetri/Forelesninger
+set $dir3 ~/Sync/FAM/Master/FYS4250-BiomedisinskIstumentering/Forelesninger
 
-bindsym $mod+0x5c exec $term --working-directory $dir1 -e vim . 
+# ============================== Alacritty ============================== 
+#bindsym $mod+0x5c exec $term --working-directory $dir1 -e vim . 
+#bindsym $mod+plus exec $term -e ranger $dir1
+#bindsym $mod+Shift+0x5c exec $term --working-directory $dir1 -e tmux
+#
+#bindsym $mod+0xfe57 exec $term --working-directory $dir2 -e vim . 
+#bindsym $mod+0xe5 exec $term -e ranger $dir2
+#bindsym $mod+Shift+0xfe57 exec $term --working-directory $dir2 -e tmux
+#
+#bindsym $mod+0x27 exec $term --working-directory $dir3 -e vim .
+#bindsym $mod+0xe6 exec $term -e ranger $dir3
+#bindsym $mod+Shift+0x27 exec $term --working-directory $dir3 -e tmux
+
+# ============================== Termite ==============================  
+bindsym $mod+0x5c exec $term -e "vim ." -d $dir1
 bindsym $mod+plus exec $term -e ranger $dir1
-bindsym $mod+Shift+0x5c exec $term --working-directory $dir1 -e tmux
+bindsym $mod+Shift+0x5c exec $term -e tmux -d $dir1
 
-bindsym $mod+0xfe57 exec $term --working-directory $dir2 -e vim . 
-bindsym $mod+0xe5 exec $term -e ranger $dir2
-bindsym $mod+Shift+0xfe57 exec $term --working-directory $dir2 -e tmux
+bindsym  $mod+0xfe57 exec $term -e "vim ." -d $dir2
+bindsym  $mod+0xe5 exec $term -e ranger $dir2
+bindsym  $mod+Shift+0xfe57 exec $term -e tmux -d $dir2
 
-bindsym $mod+0x27 exec $term --working-directory $dir3 -e vim .
-bindsym $mod+0xe6 exec $term -e ranger $dir3
-bindsym $mod+Shift+0x27 exec $term --working-directory $dir3 -e tmux
+bindsym  $mod+0x27 exec $term -e "vim ." -d $dir3
+bindsym  $mod+0xe6 exec $term -e ranger $dir3
+bindsym  $mod+Shift+0x27 exec $term -e tmux -d $dir3
 
 # ===================== Media Control =================================
 # --------------------- Spotify control -----------------------------
@@ -512,25 +523,6 @@ bindsym $mod+BackSpace exec --no-startup-id playerctl -p spotify play-pause
 bindsym $mod+Shift+Insert exec --no-startup-id "playerctl -i spotify,vlc previous"
 bindsym $mod+Shift+Delete exec --no-startup-id "playerctl -i spotify,vlc next"
 bindsym $mod+Shift+BackSpace exec --no-startup-id "playerctl -i spotify,vlc play-pause"
-
-# ================== Aplication laucher mode =======================================================
-
-set $launch (g) toggl, (2) vivaldi, (3) thunderbird, (4) spotify, (x) xournalpp, (e) evince, (o) okular 
-mode "$launch"{
-    bindsym g exec com.toggl.TogglDesktop
-    bindsym 2 exec vivaldi-stable
-    bindsym 3 exec thunderbird 
-    bindsym 4 exec spotify
-    bindsym x exec xournalpp
-    bindsym e exec evince
-    bindsym o exec okular
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    }
-#bindsym $mod+Tab mode "$launch"
-
 
 
 # ==================== Move workspaces ====================
