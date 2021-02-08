@@ -220,3 +220,10 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # set alias for git and dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
