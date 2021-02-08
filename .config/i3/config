@@ -113,21 +113,6 @@ bindsym $mod+d exec --no-startup-id dmenu_run -nf "$light0" -nb "$dark0" -sb "$n
 # installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# ====================== Execute at starup ======================
-#exec xrandr --output eDP1 --mode 2160x1440 --pos 1920x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x180 --rotate normal --output HDMI2 --off --output VIRTUAL1 --off
-exec --no-startup-id redshift -P -O 3000      
-exec --no-startup-id picom
-# set keyboard layout and swap caps with escape
-exec --no-startup-id setxkbmap -layout no
-exec --no-startup-id setxkbmap -option caps:escape
-exec --no-startup-id setxkbmap -option lv3:lalt_switch
-
-exec --no-startup-id clipmenud
-# load bluetooth
-#exec --no-startup-id pactl load-module module-bluetooth-discover   
-
-# set wallpaper
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/Wallpaper/11459-1604695452094-2339.jpg
 
 # ====================== Key bindings ===============================
 # change focus
@@ -480,7 +465,7 @@ bindsym $mod+w exec brave
 # Terminal applications 
 bindsym $mod+n     exec $term -e ~/.config/vifm/scripts/vifmrun
 bindsym $mod+m     exec $term -e calcurse 
-bindsym $mod+comma exec $term -e vim 
+bindsym $mod+comma exec $term -e "vim"
 
 # Open course direcories
 set $dir1 ~/Sync/FAM/Master/FYS-STK4155-AnvendtDataanalyseOgMaskinlæring
@@ -526,7 +511,7 @@ bindsym $mod+Shift+BackSpace exec --no-startup-id "playerctl -i spotify,vlc play
 
 
 # ==================== Move workspaces ====================
-set $mode_move_workspaces [F]ysikk  [I]nformatikk [G]eologi
+set $mode_move_workspaces [F]ysikk [I]nformatikk [G]eologi [K]jerne Fysikk
 mode "$mode_move_workspaces" {
      bindsym f exec --no-startup-id i3-msg rename workspace "1" to "f1";\
                exec --no-startup-id i3-msg rename workspace "2" to "f2";\
@@ -593,7 +578,28 @@ mode "$mode_move_workspaces" {
                      exec --no-startup-id i3-msg rename workspace "g8" to "8";\
                      exec --no-startup-id i3-msg rename workspace "g9" to "9";\
                      exec --no-startup-id i3-msg rename workspace "g10" to "10"
-#
+
+     bindsym k exec --no-startup-id i3-msg rename workspace "1" to "k1";\
+               exec --no-startup-id i3-msg rename workspace "2" to "k2";\
+               exec --no-startup-id i3-msg rename workspace "3" to "k3";\
+               exec --no-startup-id i3-msg rename workspace "4" to "k4";\
+               exec --no-startup-id i3-msg rename workspace "5" to "k5";\
+               exec --no-startup-id i3-msg rename workspace "6" to "k6";\
+               exec --no-startup-id i3-msg rename workspace "7" to "k7";\
+               exec --no-startup-id i3-msg rename workspace "8" to "k8";\
+               exec --no-startup-id i3-msg rename workspace "9" to "k9";\
+               exec --no-startup-id i3-msg rename workspace "10" to "k10"
+
+     bindsym Shift+k exec --no-startup-id i3-msg rename workspace "k1" to "1";\
+                     exec --no-startup-id i3-msg rename workspace "k2" to "2";\
+                     exec --no-startup-id i3-msg rename workspace "k3" to "3";\
+                     exec --no-startup-id i3-msg rename workspace "k4" to "4";\
+                     exec --no-startup-id i3-msg rename workspace "k5" to "5";\
+                     exec --no-startup-id i3-msg rename workspace "k6" to "6";\
+                     exec --no-startup-id i3-msg rename workspace "k7" to "7";\
+                     exec --no-startup-id i3-msg rename workspace "k8" to "8";\
+                     exec --no-startup-id i3-msg rename workspace "k9" to "9";\
+                     exec --no-startup-id i3-msg rename workspace "k10" to "10"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -613,3 +619,18 @@ bindsym --release Print exec --no-startup-id scrot -s -f ~/Pictures/%Y-%m-%d-%H%
 bindsym --release Shift+Print exec --no-startup-id scrot -s -f -o "/tmp/image.png" && xclip -selection clipboard -t image/png -i /tmp/image.png
 
 
+# ====================== Execute at starup ======================
+#exec xrandr --output eDP1 --mode 2160x1440 --pos 1920x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x180 --rotate normal --output HDMI2 --off --output VIRTUAL1 --off
+exec --no-startup-id redshift -P -O 3000      
+exec --no-startup-id picom
+# set keyboard layout and swap caps with escape
+exec_always --no-startup-id setxkbmap -layout no
+exec_always --no-startup-id setxkbmap -option caps:escape lv3:lalt_switch 
+exec_always --no-startup-id setxkbmap -model pc105
+
+exec --no-startup-id clipmenud
+# load bluetooth
+#exec --no-startup-id pactl load-module module-bluetooth-discover   
+
+# set wallpaper
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/Wallpaper/11459-1604695452094-2339.jpg
