@@ -285,12 +285,12 @@ bindsym $mod+Shift+bar move container to workspace number $ws17
 
 
 # =============== Application default workspace ===================
-#for_window [class="Vivaldi-stable"] $ws12
-#assign [class="Vivaldi-stable"]     $ws12
 assign [class="Autokey-gtk"]        $ws16
 assign [class="Thunderbird"]        $ws13
 for_window [class="Spotify"] move to workspace $ws15
-#exec --no-startup-id i3-msg 'ws9 ; exec /usr/bin/vivaldi-stable'
+
+# ========================= Full screen =========================  
+for_window [class="VirtualBox Machine"] fullscreen 
 
 # ============== Launch application at specific workspace on startup =========
 #exec --no-startup-id i3-msg '$ws2; exec /usr/bin/chromium'
@@ -437,13 +437,13 @@ mode "$settings" {
     # screen saver
     bindsym s mode "$screen_saver"
     # keyboard leyout
-    bindsym l exec setxkbmap -layout no ; exec setxkbmap -option caps:escape ; exec setxkbmap -option lv3:lalt_switch
+    bindsym l exec setxkbmap -layout no ; exec setxkbmap -option caps:escape lv3:lalt_switch
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+period mode "default"
+    bindsym $mod+Tab mode "default"
     } 
-bindsym $mod+period mode "$settings"
+bindsym $mod+Tab mode "$settings"
 
 
 
@@ -463,9 +463,11 @@ bindsym $mod+t exec com.toggl.TogglDesktop
 bindsym $mod+w exec brave
 
 # Terminal applications 
-bindsym $mod+n     exec $term -e ~/.config/vifm/scripts/vifmrun
+#bindsym $mod+n     exec $term -e ~/.config/vifm/scripts/vifmrun
+bindsym $mod+n     exec $term -e ranger
 bindsym $mod+m     exec $term -e calcurse 
-bindsym $mod+comma exec $term -e "vim"
+bindsym $mod+comma exec $term -e 'vim'
+bindsym $mod+period exec $term -e 'htop'
 
 # Open course direcories
 set $dir1 ~/Sync/FAM/Master/FYS-STK4155-AnvendtDataanalyseOgMaskinlæring
@@ -609,7 +611,7 @@ bindsym $mod+Shift+w mode $mode_move_workspaces
 
 # Suspend
 bindsym $mod+Shift+s exec --no-startup-id i3lock -c "$dark0" && systemctl suspend, mode "default"
-#bindsym $mod+c exec --no-startup-id i3lock -c "$dark0" 
+#bindsym $mod+c exec --no-startup-id i3lock -c "$nddark0" 
 
 # Remove titele bar
 default_border pixel 3 
