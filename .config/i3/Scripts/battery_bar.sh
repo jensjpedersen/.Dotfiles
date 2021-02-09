@@ -11,7 +11,7 @@ then
     then
         echo  ${bat}%
     else
-        echo hei   ${bat}%
+        echo  ${bat}%
     fi
 else 
     if [ ${bat} -lt 30 ]
