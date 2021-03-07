@@ -99,7 +99,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-set $term --no-startup-id termite
+set $term --no-startup-id alacritty
 # start a terminal
 bindsym $mod+Return exec $term 
 
@@ -144,8 +144,8 @@ bindsym $mod+v split h
 bindsym $mod+Shift+minus split h
 
 # split in vertical orientation
-bindsym $mod+s split v
-bindsym $mod+minus split v
+bindsym $mod+s split toggle
+#bindsym $mod+s split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -163,12 +163,14 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 #
 # focus the child container
 #bindsym $mod+c focus child
 bindsym $mod+c exec --no-startup-id clipmenu -nf "$light0" -nb "$dark0" -sb "$neutral_yellow" -sf "$dark0" -h 35 -fn 'MesloLGL Nerd Font Mono-14'
 
+bindsym $mod+Tab scratchpad show
+bindsym $mod+Shift+Tab move scratchpad 
 
 
 
@@ -219,24 +221,24 @@ set $ws17 "17:   "
 #workspace $ws17 output eDP1
 
 # ==================== Thinkpad ====================  
-workspace $ws1 output DP-1-1 
-workspace $ws2 output DP-1-1 
-workspace $ws3 output DP-1-1
-workspace $ws4 output DP-1-1
-workspace $ws5 output DP-1-1
-workspace $ws6 output LVDS1
-workspace $ws7 output LVDS1
-workspace $ws8 output LVDS1
-workspace $ws9 output LVDS1
-workspace $ws10 output LVDS1
+workspace $ws1 output DP-2 
+workspace $ws2 output DP-2 
+workspace $ws3 output DP-2
+workspace $ws4 output DP-2
+workspace $ws5 output DP-2
+workspace $ws6 output DP-3
+workspace $ws7 output DP-3
+workspace $ws8 output DP-3
+workspace $ws9 output DP-3
+workspace $ws10 output DP-3
 
-workspace $ws11 output DP-1-1
-workspace $ws12 output DP-1-1
-workspace $ws13 output DP-1-1
-workspace $ws14 output DP-1-1
-workspace $ws15 output DP-1-1
-workspace $ws16 output DP-1-1
-workspace $ws17 output LVDS1
+workspace $ws11 output DP-2
+workspace $ws12 output DP-2
+workspace $ws13 output DP-2
+workspace $ws14 output DP-2
+workspace $ws15 output DP-2
+workspace $ws16 output DP-2
+workspace $ws17 output DP-3
 
 # switch to workspace
 bindsym $mod+y workspace number $ws1
@@ -369,22 +371,40 @@ bar {
 }
 
 # ------------------------ power settings --------------------------------------------------
-set $Locker i3lock && sleep 1
-set $mode_system System (l) lck, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+#set $Locker i3lock && sleep 1
+#set $mode_system System (l) lck, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+#mode "$mode_system" {
+#    bindsym l exec --no-startup-id $Locker, mode "default"
+#    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+#    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+#    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+#    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+#    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+#
+#    # back to normal: Enter or Escape
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+#bindsym $mod+Shift+q mode "$mode_system"
+#
 
-    # back to normal: Enter or Escape
+# ========================= Manjaro power settings ========================= 
+# Set shut down, restart and locking features
+bindsym $mod+Shift+q mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+q mode "$mode_system"
-
 
 # ---------------------- audio output -----------------------------------
 
@@ -397,22 +417,52 @@ mode "$audio_output" {
     bindsym Escape mode "default"
     }
 
+# ========================= Bluetooth =========================  
+set $bluetooth on [y], off [n], [c]onnect XM2, [d]isconnect XM2
+mode "$bluetooth" {
+    bindsym y exec --no-startup-id bluetoothctl power on
+    bindsym n exec --no-startup-id bluetoothctl power off
+    bindsym c exec --no-startup-id bluetoothctl connect 70:26:05:88:B4:0D
+    bindsym d exec --no-startup-id bluetoothctl disconnect 70:26:05:88:B4:0D
+    bindsym Escape mode "default"
+    }
 
-# --------------------- Select monitor ------------------------------------------
+# --------------------- Select monitor surface  ------------------------------------------
+#set $monitor [H]DMI1, [e]DP1, [D]ual 
+#mode "$monitor" {
+#    bindsym h exec xrandr --output eDP1 --off --output DP1 --off --output DP2 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI2 --off --output VIRTUAL1 --off
+#    bindsym e exec xrandr --output eDP1 --primary --mode 2160x1440 --pos 0x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off
+#    bindsym d exec xrandr --output eDP1 --mode 2160x1440 --pos 1920x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x180 --rotate normal --output HDMI2 --off --output VIRTUAL1 --off
 #
-set $monitor [H]DMI1, [e]DP1, [D]ual 
-mode "$monitor" {
-    bindsym h exec xrandr --output eDP1 --off --output DP1 --off --output DP2 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI2 --off --output VIRTUAL1 --off
-    bindsym e exec xrandr --output eDP1 --primary --mode 2160x1440 --pos 0x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off
-    bindsym d exec xrandr --output eDP1 --mode 2160x1440 --pos 1920x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x180 --rotate normal --output HDMI2 --off --output VIRTUAL1 --off
+#    # back to normal: Enter or Escape
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#    bindsym $mod+m mode "default"
+#    }
 
+# ========================= Monitor Thinkpad ========================= 
+# ------------------------- graphics enabled ------------------------- 
+#set $monitor [L]VDS1, [R]igth, [D]ual 
+#mode "$monitor" {
+#    bindsym l exec xrandr --output LVDS1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VGA1 --off --output VIRTUAL1 --off --output LVDS-1-2 --off --output VGA-1-2 --off --output DP-1-1 --off --output DP-1-2 --off --output DP-1-3 --off
+#    bindsym r exec xrandr --output LVDS1 --off --output VGA1 --off --output VIRTUAL1 --off --output LVDS-1-2 --off --output VGA-1-2 --off --output DP-1-1 --off --output DP-1-2 --off --output DP-1-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+#    bindsym d exec xrandr --output LVDS1 --off --output VGA1 --off --output VIRTUAL1 --off --output LVDS-1-2 --off --output VGA-1-2 --off --output DP-1-1 --off --output DP-1-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-3 --mode 1920x1080 --pos 1920x0 --rotate normal
+#
+#    # back to normal: Enter or Escape
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#    }
+# ------------------------- grapics disabled ------------------------- 
+set $monitor [L]VDS1, DP-[2], DP-[3], [D]ual 
+mode "$monitor" {
+    bindsym l exec xrandr --output LVDS-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off
+    bindsym 2 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-3 --off
+    bindsym 3 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+    bindsym d exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-3 --mode 1920x1080 --pos 1920x0 --rotate normal
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+m mode "default"
     }
-
-
 # ----------------- enable/disable screen saver ---------------------------------
 
 set $screen_saver Screen saver on [y], off [n]
@@ -428,22 +478,24 @@ mode "$screen_saver" {
 
 # -------------------------- settings menu --------------------------------------
 
-set $settings [A]udio output, [M]onitor, [S]creen saver, Keyboard [l]ayout  
+set $settings [A]udio output, [B]bluetooth, [M]onitor, [S]creen saver, Keyboard [l]ayout  
 mode "$settings" {
     # set audio output
     bindsym a mode "$audio_output"
+    # bluetooth settings
+    bindsym b mode "$bluetooth"
     # set monitor
     bindsym m mode "$monitor"
     # screen saver
     bindsym s mode "$screen_saver"
     # keyboard leyout
-    bindsym l exec setxkbmap -layout no ; exec setxkbmap -option caps:escape lv3:lalt_switch
+    bindsym l exec setxkbmap -layout no ; exec setxkbmap -option caps:escape ; exec setxkbmap -option lv3:lalt_switch ; exec "setxkbmap -model pc105"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+Tab mode "default"
     } 
-bindsym $mod+Tab mode "$settings"
+bindsym $mod+0x2d mode "$settings"
 
 
 
@@ -459,21 +511,26 @@ bindsym $mod+z exec xinput --map-to-output "NTRG0001:01 1B96:1B05 Pen (0)" eDP1 
 
 # ====================== User key bindings =====================
 bindsym $mod+x exec xournalpp
-bindsym $mod+t exec com.toggl.TogglDesktop
+bindsym $mod+t exec TogglDesktop
+bindsym $mod+Shift+t exec killall TogglDesktop
 bindsym $mod+w exec brave
 
 # Terminal applications 
 #bindsym $mod+n     exec $term -e ~/.config/vifm/scripts/vifmrun
 bindsym $mod+n     exec $term -e ranger
 bindsym $mod+m     exec $term -e calcurse 
-bindsym $mod+comma exec $term -e 'vim'
-bindsym $mod+period exec $term -e 'htop'
+#bindsym $mod+comma exec --no-startup-id "alacritty -e /bin/vim"
+bindsym $mod+comma exec --no-startup-id alacritty --command vim
+bindsym $mod+Shift+comma exec --no-startup-id alacritty --command vim -c VimwikiIndex
+bindsym $mod+period exec $term -e pulsemixer
+bindsym $mod+b exec $term -e "cointop"
 
-# Open course direcories
-set $dir1 ~/Sync/FAM/Master/FYS-STK4155-AnvendtDataanalyseOgMaskinlæring
-set $dir2 ~/Sync/FAM/Master/FYS4711-StrålingOgDosimetri/Forelesninger
-set $dir3 ~/Sync/FAM/Master/FYS4250-BiomedisinskIstumentering/Forelesninger
+# fzf scripts
+bindsym $mod+ae exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_ranger.sh
+bindsym $mod+aring exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_index.sh
 
+bindsym $mod+Shift+n     exec $term -e zsh ~/Scripts/Fzf/fzf_index.sh
+bindsym $mod+Shift+m     exec $term -e cointop
 # ============================== Alacritty ============================== 
 #bindsym $mod+0x5c exec $term --working-directory $dir1 -e vim . 
 #bindsym $mod+plus exec $term -e ranger $dir1
@@ -488,17 +545,17 @@ set $dir3 ~/Sync/FAM/Master/FYS4250-BiomedisinskIstumentering/Forelesninger
 #bindsym $mod+Shift+0x27 exec $term --working-directory $dir3 -e tmux
 
 # ============================== Termite ==============================  
-bindsym $mod+0x5c exec $term -e "vim ." -d $dir1
-bindsym $mod+plus exec $term -e ranger $dir1
-bindsym $mod+Shift+0x5c exec $term -e tmux -d $dir1
-
-bindsym  $mod+0xfe57 exec $term -e "vim ." -d $dir2
-bindsym  $mod+0xe5 exec $term -e ranger $dir2
-bindsym  $mod+Shift+0xfe57 exec $term -e tmux -d $dir2
-
-bindsym  $mod+0x27 exec $term -e "vim ." -d $dir3
-bindsym  $mod+0xe6 exec $term -e ranger $dir3
-bindsym  $mod+Shift+0x27 exec $term -e tmux -d $dir3
+#bindsym $mod+0x5c exec $term -e "vim ." -d $dir1
+#bindsym $mod+plus exec $term -e ranger $dir1
+#bindsym $mod+Shift+0x5c exec $term -e tmux -d $dir1
+#
+#bindsym  $mod+0xfe57 exec $term -e "vim ." -d $dir2
+#bindsym  $mod+0xe5 exec $term -e ranger $dir2
+#bindsym  $mod+Shift+0xfe57 exec $term -e tmux -d $dir2
+#
+#bindsym  $mod+0x27 exec $term -e "vim ." -d $dir3
+#bindsym  $mod+0xe6 exec $term -e ranger $dir3
+#bindsym  $mod+Shift+0x27 exec $term -e tmux -d $dir3
 
 # ===================== Media Control =================================
 # --------------------- Spotify control -----------------------------
@@ -610,8 +667,7 @@ bindsym $mod+Shift+w mode $mode_move_workspaces
 
 
 # Suspend
-bindsym $mod+Shift+s exec --no-startup-id i3lock -c "$dark0" && systemctl suspend, mode "default"
-#bindsym $mod+c exec --no-startup-id i3lock -c "$nddark0" 
+bindsym $mod+Shift+s exec --no-startup-id i3exit suspend
 
 # Remove titele bar
 default_border pixel 3 
@@ -619,20 +675,23 @@ default_border pixel 3
 # Scrot screenshot
 bindsym --release Print exec --no-startup-id scrot -s -f ~/Pictures/%Y-%m-%d-%H%M%S.png
 bindsym --release Shift+Print exec --no-startup-id scrot -s -f -o "/tmp/image.png" && xclip -selection clipboard -t image/png -i /tmp/image.png
-
+#bindsym Shift+Print --release exec --no-startup-id i3-scrot -sc
 
 # ====================== Execute at starup ======================
 #exec xrandr --output eDP1 --mode 2160x1440 --pos 1920x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --primary --mode 1920x1080 --pos 0x180 --rotate normal --output HDMI2 --off --output VIRTUAL1 --off
 exec --no-startup-id redshift -P -O 3000      
 exec --no-startup-id picom
 # set keyboard layout and swap caps with escape
-exec_always --no-startup-id setxkbmap -layout no
-exec_always --no-startup-id setxkbmap -option caps:escape lv3:lalt_switch 
-exec_always --no-startup-id setxkbmap -model pc105
+exec_always --no-startup-id "setxkbmap -layout no"
+exec_always --no-startup-id "setxkbmap -option caps:escape" 
+exec_always --no-startup-id "setxkbmap -option lv3:lalt_switch"
+exec_always --no-startup-id "setxkbmap -model pc105"
 
 exec --no-startup-id clipmenud
+exec_always --no-startup-id xmodmap .Xmodmap 
+exec_always --no-startup-id zsh ~/Scripts/Huion/Huion_DP-1-2.sh
 # load bluetooth
 #exec --no-startup-id pactl load-module module-bluetooth-discover   
 
 # set wallpaper
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/Wallpaper/11459-1604695452094-2339.jpg
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/Wallpaper/pexels-pixabay-235734.jpg
