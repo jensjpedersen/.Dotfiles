@@ -1,6 +1,5 @@
 #!/bin/zsh
-
-bat=$(acpi -b | awk -F " |%" '{print $4}')
+bat=$(acpi -b | awk -F ' |%' '/Battery 0/ {print $4}')
 charge=$(acpi -a | awk '{print $3}')
 if [ ${charge} = "on-line" ]
 then
