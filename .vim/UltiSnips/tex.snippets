@@ -44,11 +44,11 @@ snippet ov "Overset" i
 \overset{$1}$0
 endsnippet 
 
-snippet box "Begin box" i 
+snippet box "Begin box" 
 \boxed{$1} $0
 endsnippet
 
-snippet eqref "math ref"
+snippet eqref "math ref" i
 \eqref{$1} $0
 endsnippet
 
@@ -73,7 +73,7 @@ snippet _ "Sub script" i
 _{$1}$0 
 endsnippet
 
-snippet -> "Vector" iA
+snippet vec "Vector" iA
 \vec{$1}$0
 endsnippet
 
@@ -114,7 +114,7 @@ snippet eq "Begin equation"
 \end{equation*}
 endsnippet 
 
-snippet al "begin align"
+snippet align "begin align" 
 \begin{align*}
 	$0
 \end{align*}
@@ -180,8 +180,7 @@ snippet article "Article template"
 \documentclass[a4paper,10pt,norsk]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[norsk]{babel}
-\usepackage{graphicx, verbatim, amsmath, amsfonts, geometry, float, import,
-tcolorbox}
+\usepackage{graphicx, verbatim, amsmath, amsfonts, geometry, float, import}
 
 \setlength{\parindent}{0mm}
 \setlength{\parskip}{1.5mm}
@@ -216,4 +215,119 @@ snippet fig "Figure"
 	\includegraphics[width=0.8\textwidth]{Figures/$1}
 \end{figure}
 $0
+endsnippet
+
+
+#========================= Symbols =========================     
+#------------------------- Math -------------------------
+snippet -> "rigth arrow" iA
+ \rightarrow$0
+endsnippet
+
+snippet => "Rigth arrow" iA
+ \Rightarrow$0
+endsnippet
+
+snippet <> "Left rigth arrow" iA
+\Leftrightarrow
+endsnippet
+#------------------------- Greek -------------------------
+snippet al "alpha" i
+\alpha$0
+endsnippet
+
+snippet be "beta" i
+\beta$0
+endsnippet
+
+snippet ga "gamma" i
+\gamma$0
+endsnippet
+
+snippet de "delta" i
+\delta$0
+endsnippet
+
+snippet De "Delta" i
+\Delta$0
+endsnippet
+
+snippet ep "epsilon" i
+\epsilon$0
+endsnippet
+
+snippet et "eta" i
+\eta$0
+endsnippet
+
+snippet th "theta" i
+\theta$0
+endsnippet
+
+snippet Th "Theta" i
+\Theta$0
+endsnippet
+
+snippet ka "kappa" i
+\kappa$0
+endsnippet
+
+snippet la "lambda" i
+\lambda$0
+endsnippet
+
+snippet mu "mu" i
+\mu$0
+endsnippet
+
+snippet nu "nu" i
+\nu$0
+endsnippet
+
+snippet xi "xi" i
+\xi$0
+endsnippet
+
+snippet pi "pi" i
+\pi$0
+endsnippet
+
+snippet si "sigma" i
+\sigma$0
+endsnippet
+
+snippet Si "Sigma" i
+\Sigma$0
+endsnippet
+
+snippet ta "tau" i
+\tau$0
+endsnippet
+
+snippet ph "phi" i
+\phi$0
+endsnippet
+
+snippet Ph "Phi" i
+\Phi$0
+endsnippet
+
+snippet rh "Rho" i
+\rho$0
+endsnippet
+
+snippet ps "psi" i
+\psi$0
+endsnippet
+
+snippet Ps "Psi" i
+\Psi$0
+endsnippet
+
+snippet om "omega" i
+\omega$0
+endsnippet
+
+snippet Om "Omega" i
+\Omega$0
 endsnippet

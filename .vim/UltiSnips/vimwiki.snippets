@@ -1,4 +1,28 @@
-# General
+snippet log "Log"
+# $1/03/2021
+==================================================
+tinitus, trykk panne, fog
+$2
+
+| tid    | beskrivelse |
+|--------|-------------|
+| 08:00  | $3            |
+| 10:00  | $4            |
+| 12:00  | $5            |
+| 14:00  | $6            |
+| 16:00  | $7            |
+| 18:00  | $8            |
+| 20:00  | $9            |
+| 22:00  | $10            |
+| 24:00  |             |
+
+Kommentar: $0
+endsnippet
+
+snippet TODO "TODO:" A
+**TODO:** $0
+endsnippet
+
 snippet sec "Section" 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{$1}
@@ -87,7 +111,7 @@ snippet eq "Begin equation"
 \end{equation*}
 endsnippet 
 
-snippet al "begin align"
+snippet align "begin align"
 \begin{align*}
 	$0
 \end{align*}
@@ -176,3 +200,110 @@ snippet fig "Figure"
 $0
 endsnippet
 
+
+#========================= Symbols =========================     
+#------------------------- Math -------------------------
+snippet -> "rigth arrow" iA
+\rightarrow$0
+endsnippet
+
+snippet => "Rigth arrow" iA
+\Rightarrow$0
+endsnippet
+
+#------------------------- Greek -------------------------
+snippet al "alpha" i
+\alpha$0
+endsnippet
+
+snippet be "beta" i
+\beta$0
+endsnippet
+
+snippet ga "gamma" i
+\gamma$0
+endsnippet
+
+snippet de "delta" i
+\delta$0
+endsnippet
+
+snippet De "Delta" i
+\Delta$0
+endsnippet
+
+snippet ep "epsilon" i
+\epsilon$0
+endsnippet
+
+snippet et "eta" i
+\eta$0
+endsnippet
+
+snippet th "theta" i
+\theta$0
+endsnippet
+
+snippet Th "Theta" i
+\Theta$0
+endsnippet
+
+snippet ka "kappa" i
+\kappa$0
+endsnippet
+
+snippet la "lambda" i
+\lambda$0
+endsnippet
+
+snippet mu "mu" i
+\mu$0
+endsnippet
+
+snippet nu "mu" i
+\nu$0
+endsnippet
+
+snippet xi "xi" i
+\xi$0
+endsnippet
+
+snippet pi "pi" i
+\pi$0
+endsnippet
+
+snippet si "sigma" i
+\sigma$0
+endsnippet
+
+snippet si "Sigma" i
+\Sigma$0
+endsnippet
+
+snippet ta "tau" i
+\tau$0
+endsnippet
+
+snippet ph "phi" i
+\phi$0
+endsnippet
+
+snippet Ph "Phi" i
+\Phi$0
+endsnippet
+
+snippet ps "psi" i
+\psi$0
+endsnippet
+
+snippet Ps "Psi" i
+\Psi$0
+endsnippet
+
+snippet om "omega" i
+\omega$0
+endsnippet
+
+snippet Om "Omega" i
+\Omega$0
+endsnippet
