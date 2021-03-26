@@ -164,13 +164,12 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 #bindsym $mod+a focus parent
+bindsym $mod+a exec arandr
 #
 # focus the child container
 #bindsym $mod+c focus child
 bindsym $mod+c exec --no-startup-id clipmenu -nf "$light0" -nb "$dark0" -sb "$neutral_yellow" -sf "$dark0" -h 35 -fn 'MesloLGL Nerd Font Mono-14'
 
-bindsym $mod+Tab scratchpad show
-bindsym $mod+Shift+Tab move scratchpad 
 
 
 
@@ -418,12 +417,13 @@ mode "$audio_output" {
     }
 
 # ========================= Bluetooth =========================  
-set $bluetooth on [y], off [n], [c]onnect XM2, [d]isconnect XM2
+set $bluetooth on [y], off [n], [c]onnect XM2, c[o]nnect Onyx, [d]isconnect
 mode "$bluetooth" {
     bindsym y exec --no-startup-id bluetoothctl power on
     bindsym n exec --no-startup-id bluetoothctl power off
     bindsym c exec --no-startup-id bluetoothctl connect 70:26:05:88:B4:0D
-    bindsym d exec --no-startup-id bluetoothctl disconnect 70:26:05:88:B4:0D
+    bindsym o exec --no-startup-id bluetoothctl connect 04:FE:A1:94:F3:8F
+    bindsym d exec --no-startup-id bluetoothctl disconnect
     bindsym Escape mode "default"
     }
 
@@ -457,6 +457,7 @@ set $monitor [L]VDS1, DP-[2], DP-[3], [D]ual
 mode "$monitor" {
     bindsym l exec xrandr --output LVDS-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off
     bindsym 2 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-3 --off
+    #bindsym 3 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal
     bindsym 3 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal
     bindsym d exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-3 --mode 1920x1080 --pos 1920x0 --rotate normal
     # back to normal: Enter or Escape
@@ -523,14 +524,27 @@ bindsym $mod+m     exec $term -e calcurse
 bindsym $mod+comma exec --no-startup-id alacritty --command vim
 bindsym $mod+Shift+comma exec --no-startup-id alacritty --command vim -c VimwikiIndex
 bindsym $mod+period exec $term -e pulsemixer
+bindsym $mod+Shift+period exec $term -e htop
 bindsym $mod+b exec $term -e "cointop"
 
-# fzf scripts
+# ------------------------- Scratchpad -------------------------
+
+for_window [instance="ranger"] move window to scratchpad 
+for_window [instance="ncspot"] move window to scratchpad 
+exec $term --class ranger
+exec $term --class ncspot
+bindsym $mod+Tab [instance="ranger"] scratchpad show
+bindsym $mod+backslash [instance="ncspot"] scratchpad show
+bindsym $mod+Shift+Tab move scratchpad 
+
+# ------------------------- fzf scripts -------------------------
 bindsym $mod+ae exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_ranger.sh
 bindsym $mod+aring exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_index.sh
 
 bindsym $mod+Shift+n     exec $term -e zsh ~/Scripts/Fzf/fzf_index.sh
-bindsym $mod+Shift+m     exec $term -e cointop
+bindsym $mod+Shift+m     exec $term -e zsh ~/Scripts/Fzf/fzf_zhistory.sh
+
+
 # ============================== Alacritty ============================== 
 #bindsym $mod+0x5c exec $term --working-directory $dir1 -e vim . 
 #bindsym $mod+plus exec $term -e ranger $dir1
@@ -559,9 +573,9 @@ bindsym $mod+Shift+m     exec $term -e cointop
 
 # ===================== Media Control =================================
 # --------------------- Spotify control -----------------------------
-bindsym $mod+Insert exec --no-startup-id playerctl -p spotify previous
-bindsym $mod+Delete exec --no-startup-id playerctl -p spotify next
-bindsym $mod+BackSpace exec --no-startup-id playerctl -p spotify play-pause
+bindsym $mod+Insert exec --no-startup-id "playerctl -p spotify,ncspot previous"
+bindsym $mod+Delete exec --no-startup-id "playerctl -p spotify,ncspot next"
+bindsym $mod+BackSpace exec --no-startup-id "playerctl -p spotify,ncspot play-pause"
 
 # -------------------- Igonore spotify vlc -------------------------
 bindsym $mod+Shift+Insert exec --no-startup-id "playerctl -i spotify,vlc previous"
