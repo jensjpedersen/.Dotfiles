@@ -158,12 +158,14 @@ command! -nargs=* RunSilent
       \ | execute ':redraw!'
 
 nnoremap <leader>f :RunSilent ranger<CR>
-nnoremap <leader>s :RunSilent <CR>
+nnoremap <leader>s G gg :redraw! <CR>
+nnoremap <leader>l :e % <CR>
 
 nmap <localleader>mm :w<CR>: RunSilent pandoc % -t latex -o %:r.pdf <CR>
 nmap <localleader>mv :w<CR>: RunSilent mupdf %:r.pdf & <CR> 
 " Run python
 nnoremap <localleader>pr :w<CR>:!python %<CR>
+nnoremap <leader>j :w<CR>:!python %<CR>
 
 " Emmet key
 let g:user_emmet_leader_key='<C-F>'
@@ -198,6 +200,11 @@ nnoremap <silent> <leader>u  :UndotreeToggle<CR>
 nnoremap <leader>t  :TagbarToggle<CR>
 let g:tagbar_position = 'topleft vertical' 
 let g:tagbar_width = 50
+
+
+" Tab navigation
+nnoremap <leader>n :tabNext<CR>
+
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>

@@ -6,22 +6,22 @@ $2
 
 | tid    | beskrivelse |
 |--------|-------------|
-| 08:00  | $3            |
-| 10:00  | $4            |
-| 12:00  | $5            |
-| 14:00  | $6            |
-| 16:00  | $7            |
-| 18:00  | $8            |
-| 20:00  | $9            |
-| 22:00  | $10            |
+| 08:00  |             |
+| 10:00  |             |
+| 12:00  |             |
+| 14:00  |             |
+| 16:00  |             |
+| 18:00  |             |
+| 20:00  |             |
+| 22:00  |             |
 | 24:00  |             |
 
-Kommentar: $0
+Kommentar: 
 endsnippet
 
-snippet TODO "TODO:" A
-**TODO:** $0
-endsnippet
+#snippet TODO "TODO:" A
+#**TODO:** $0
+#endsnippet
 
 snippet sec "Section" 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -85,6 +85,9 @@ snippet _ "Sub script" i
 _{$1}$0 
 endsnippet
 
+snippet sum "Sum" i
+\sum_{$1}^{$2}$0
+endsnippet
 
 snippet im "Inline math" i
 $$1$$0
@@ -146,13 +149,19 @@ snippet ii "Item" bA
 \item $0
 endsnippet
 
-snippet py "Begin python lstlisting"
-\begin{lstlisting}[language=Python]
+snippet py "python block"
+\`\`\`python
 $1
-\end{lstlisting}
+\`\`\`
 $0
 endsnippet
 
+snippet co "Begin code block"
+\`\`\`
+$1
+\`\`\`
+$0
+endsnippet
 
 snippet eqbox "Begin equation box"
 \begin{tcolorbox}
@@ -276,7 +285,7 @@ snippet si "sigma" i
 \sigma$0
 endsnippet
 
-snippet si "Sigma" i
+snippet Si "Sigma" i
 \Sigma$0
 endsnippet
 
