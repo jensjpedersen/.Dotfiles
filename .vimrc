@@ -162,8 +162,9 @@ command! -nargs=* RunSilent
 
 nnoremap <leader>f :RunSilent ranger<CR>
 "nnoremap <leader>s G gg :redraw! <CR>
-nnoremap <leader>j :w<CR>:RunSilent echo "python %" > /tmp/vimpipe <CR>
-nnoremap <leader>c :w<CR>:RunSilent echo "clear" > /tmp/vimpipe <CR>
+nnoremap <leader>j :w<CR>:silent !echo "python %" > /tmp/vimpipe <CR>:redraw!<CR>
+nnoremap <leader>c :w<CR>:silent !echo "clear" > /tmp/vimpipe <CR>:redraw!<CR>
+
 nnoremap <leader>k :w<CR>:RunSilent kill $(pgrep -f "python %") <CR>
 nnoremap <leader>l :e % <CR>
 
