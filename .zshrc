@@ -222,10 +222,15 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # set alias for git and dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 #alias vim="nvim"
+alias trash='/home/jensjp/.local/share/Trash/files'
+alias matlab="matlab -nosplash -nodesktop"
 
+# ======================== FZF =========================
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -H -t d . $HOME"
+
+
 
 # ========================= Ranger =========================
 # Preventing nested ranger instance
