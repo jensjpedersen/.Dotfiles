@@ -29,6 +29,9 @@ Plug 'tpope/vim-fugitive' " git plugin
 Plug 'christoomey/vim-tmux-navigator' "Navigation between vim and tmux
 Plug 'benmills/vimux' "vim tmux compatibility
 Plug 'ap/vim-css-color' "Show hex colors
+Plug 'justinmk/vim-sneak' "naviagation
+Plug 'mhinz/vim-startify' "start page
+Plug 'preservim/nerdtree' 
 call plug#end()
 
 set nocompatible
@@ -158,14 +161,18 @@ command! -nargs=* RunSilent
       \ | execute ':redraw!'
 
 nnoremap <leader>f :RunSilent ranger<CR>
-nnoremap <leader>s G gg :redraw! <CR>
+"nnoremap <leader>s G gg :redraw! <CR>
+nnoremap <leader>j :w<CR>:RunSilent echo "python %" > /tmp/vimpipe <CR>
+nnoremap <leader>c :w<CR>:RunSilent echo "clear" > /tmp/vimpipe <CR>
+nnoremap <leader>k :w<CR>:RunSilent kill $(pgrep -f "python %") <CR>
 nnoremap <leader>l :e % <CR>
 
 nmap <localleader>mm :w<CR>: RunSilent pandoc % -t latex -o %:r.pdf <CR>
+nmap <localleader>ms :w<CR>: RunSilent pandoc % -t beamer -o %:r.pdf <CR> " Make slide show
 nmap <localleader>mv :w<CR>: RunSilent mupdf %:r.pdf & <CR> 
 " Run python
 nnoremap <localleader>pr :w<CR>:!python %<CR>
-nnoremap <leader>j :w<CR>:!python %<CR>
+nnoremap <leader>s :w<CR>:!python %<CR>
 
 " Emmet key
 let g:user_emmet_leader_key='<C-F>'
@@ -196,12 +203,17 @@ nnoremap <silent> <leader>d  :YcmCompleter GoTo<CR>
 " Undo tree
 nnoremap <silent> <leader>u  :UndotreeToggle<CR>
 
+" NERD Tree
+nnoremap <silent> <leader>a :NERDTreeToggle<CR>
+
 " Tagbar
 nnoremap <leader>t  :TagbarToggle<CR>
 let g:tagbar_position = 'topleft vertical' 
 let g:tagbar_width = 50
 
-
+" vim sneak
+nmap ø <Plug>Sneak_s
+nmap Ø <Plug>Sneak_S
 " Tab navigation
 nnoremap <leader>n :tabNext<CR>
 
