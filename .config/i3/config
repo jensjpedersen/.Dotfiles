@@ -1,6 +1,5 @@
 # Dependencies
 # feh, clipmenu, dmenu, xclip, scrot
-#
 # Defining colors
 set $bg      #282A36
 set $lg      #44475a
@@ -72,10 +71,10 @@ gaps outer 10
 # is used in the bar {} block below.
 #font pango:monospace 20
 #font pango:SauceCodePro Nerd Font 14 
-font pango:MesloLGL Nerd Font 14 
+font pango:MesloLGLDZ Nerd Font 14 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 15
+#font pango:DejaVuSansMono Nerd Font 15
 
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -523,18 +522,21 @@ bindsym $mod+m     exec $term -e calcurse
 #bindsym $mod+comma exec --no-startup-id "alacritty -e /bin/vim"
 bindsym $mod+comma exec --no-startup-id alacritty --command vim
 bindsym $mod+Shift+comma exec --no-startup-id alacritty --command vim -c VimwikiIndex
-bindsym $mod+period exec $term -e pulsemixer
-bindsym $mod+Shift+period exec $term -e htop
+bindsym $mod+period exec $term -e htop
+bindsym $mod+Shift+period exec $term -e bpytop
 bindsym $mod+b exec $term -e "cointop"
 
 # ------------------------- Scratchpad -------------------------
 
 for_window [instance="ranger"] move window to scratchpad 
 for_window [instance="ncspot"] move window to scratchpad 
-exec $term --class ranger
-exec $term --class ncspot
+for_window [instance="pulsemixer"] move window to scratchpad 
+exec $term --class ranger -e ranger
+exec $term --class ncspot -e ncspot
+exec $term --class pulsemixer -e pulsemixer
 bindsym $mod+Tab [instance="ranger"] scratchpad show
 bindsym $mod+backslash [instance="ncspot"] scratchpad show
+bindsym $mod+plus [instance="pulsemixer"] scratchpad show
 bindsym $mod+Shift+Tab move scratchpad 
 
 # ------------------------- fzf scripts -------------------------
@@ -578,14 +580,35 @@ bindsym $mod+Delete exec --no-startup-id "playerctl -p spotify,ncspot next"
 bindsym $mod+BackSpace exec --no-startup-id "playerctl -p spotify,ncspot play-pause"
 
 # -------------------- Igonore spotify vlc -------------------------
-bindsym $mod+Shift+Insert exec --no-startup-id "playerctl -i spotify,vlc previous"
-bindsym $mod+Shift+Delete exec --no-startup-id "playerctl -i spotify,vlc next"
-bindsym $mod+Shift+BackSpace exec --no-startup-id "playerctl -i spotify,vlc play-pause"
-
+bindsym $mod+Shift+Insert exec --no-startup-id "playerctl -i spotify,ncspot,vlc previous"
+bindsym $mod+Shift+Delete exec --no-startup-id "playerctl -i spotify,ncspot,vlc next"
+bindsym $mod+Shift+BackSpace exec --no-startup-id "playerctl -i spotify,ncspot,vlc play-pause"
 
 # ==================== Move workspaces ====================
-set $mode_move_workspaces [F]ysikk [I]nformatikk [G]eologi [K]jerne Fysikk
+set $mode_move_workspaces [D]iagnostisk fysikk, [F]ysikk, [I]nformatikk, [G]eologi, [K]jerne, Fysikk
 mode "$mode_move_workspaces" {
+     bindsym d exec --no-startup-id i3-msg rename workspace "1" to "d1";\
+               exec --no-startup-id i3-msg rename workspace "2" to "d2";\
+               exec --no-startup-id i3-msg rename workspace "3" to "d3";\
+               exec --no-startup-id i3-msg rename workspace "4" to "d4";\
+               exec --no-startup-id i3-msg rename workspace "5" to "d5";\
+               exec --no-startup-id i3-msg rename workspace "6" to "d6";\
+               exec --no-startup-id i3-msg rename workspace "7" to "d7";\
+               exec --no-startup-id i3-msg rename workspace "8" to "d8";\
+               exec --no-startup-id i3-msg rename workspace "9" to "d9";\
+               exec --no-startup-id i3-msg rename workspace "10" to "d10"
+
+     bindsym Shift+d exec --no-startup-id i3-msg rename workspace "d1" to "1";\
+                     exec --no-startup-id i3-msg rename workspace "d2" to "2";\
+                     exec --no-startup-id i3-msg rename workspace "d3" to "3";\
+                     exec --no-startup-id i3-msg rename workspace "d4" to "4";\
+                     exec --no-startup-id i3-msg rename workspace "d5" to "5";\
+                     exec --no-startup-id i3-msg rename workspace "d6" to "6";\
+                     exec --no-startup-id i3-msg rename workspace "d7" to "7";\
+                     exec --no-startup-id i3-msg rename workspace "d8" to "8";\
+                     exec --no-startup-id i3-msg rename workspace "d9" to "9";\
+                     exec --no-startup-id i3-msg rename workspace "d10" to "10"
+
      bindsym f exec --no-startup-id i3-msg rename workspace "1" to "f1";\
                exec --no-startup-id i3-msg rename workspace "2" to "f2";\
                exec --no-startup-id i3-msg rename workspace "3" to "f3";\
@@ -677,7 +700,7 @@ mode "$mode_move_workspaces" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
     }
-bindsym $mod+Shift+w mode $mode_move_workspaces
+bindsym $mod+Shift+w mode "$mode_move_workspaces"
 
 
 # Suspend
