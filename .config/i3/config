@@ -301,6 +301,7 @@ for_window [class="Blueman-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Toggl Desktop"] floating enable
 for_window [class="matplotlib"] floating enable
+for_window [class="scan"] floating enable
 
 
 
@@ -344,7 +345,7 @@ bindsym $mod+Escape mode "resize"
 # Set some nice colors      border	 background text              indicator
 client.focused              $light2  $neutral_yellow    $dark0            $faded_yellow
 client.focused_inactive     $dark0   $dark0     $light1           $dark0
-client.unfocused            $dark0   $dark0     $bright_yellow    $bright_orange
+client.unfocused            $dark0   $dark0     $bright_yellow    $dark0
 client.urgent               $bg      $bg          $magenta $bg
 client.placeholder          $cyan      $cyan          $cyan    $cyan
 
@@ -417,10 +418,11 @@ mode "$audio_output" {
     }
 
 # ========================= Bluetooth =========================  
-set $bluetooth on [y], off [n], [c]onnect XM2, c[o]nnect Onyx, [d]isconnect
+set $bluetooth on [y], off [n], [s]can on, [c]onnect XM2, c[o]nnect Onyx, [d]isconnect
 mode "$bluetooth" {
     bindsym y exec --no-startup-id bluetoothctl power on
     bindsym n exec --no-startup-id bluetoothctl power off
+    bindsym s exec --no-startup-id $term --class "scan" -e bluetoothctl scan on
     bindsym c exec --no-startup-id bluetoothctl connect 70:26:05:88:B4:0D
     bindsym o exec --no-startup-id bluetoothctl connect 04:FE:A1:94:F3:8F
     bindsym d exec --no-startup-id bluetoothctl disconnect
@@ -713,6 +715,7 @@ default_border pixel 3
 # Scrot screenshot
 bindsym --release Print exec --no-startup-id scrot -s -f ~/Pictures/%Y-%m-%d-%H%M%S.png
 bindsym --release Shift+Print exec --no-startup-id scrot -s -f -o "/tmp/image.png" && xclip -selection clipboard -t image/png -i /tmp/image.png
+bindsym --release Ctrl+Print exec --no-startup-id scrot -u -o "/tmp/image.png" && xclip -selection clipboard -t image/png -i /tmp/image.png
 #bindsym Shift+Print --release exec --no-startup-id i3-scrot -sc
 
 # ====================== Execute at starup ======================
