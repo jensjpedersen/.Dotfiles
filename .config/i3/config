@@ -518,16 +518,16 @@ bindsym $mod+t exec TogglDesktop
 bindsym $mod+Shift+t exec killall TogglDesktop
 bindsym $mod+w exec brave
 
-# Terminal applications 
-#bindsym $mod+n     exec $term -e ~/.config/vifm/scripts/vifmrun
-bindsym $mod+n     exec $term -e ranger
-bindsym $mod+m     exec $term -e calcurse 
-#bindsym $mod+comma exec --no-startup-id "alacritty -e /bin/vim"
-bindsym $mod+comma exec --no-startup-id alacritty --command vim
-bindsym $mod+Shift+comma exec --no-startup-id alacritty --command vim -c VimwikiIndex
-bindsym $mod+period exec $term -e htop
-bindsym $mod+Shift+period exec $term -e bpytop
-bindsym $mod+b exec $term -e "cointop"
+## Terminal applications 
+##bindsym $mod+n     exec $term -e ~/.config/vifm/scripts/vifmrun
+#bindsym $mod+n     exec $term -e ranger
+#bindsym $mod+m     exec $term -e calcurse 
+##bindsym $mod+comma exec --no-startup-id "alacritty -e /bin/vim"
+#bindsym $mod+comma exec --no-startup-id alacritty --command vim
+#bindsym $mod+Shift+comma exec --no-startup-id alacritty --command vim -c VimwikiIndex
+#bindsym $mod+period exec $term -e htop
+#bindsym $mod+Shift+period exec $term -e bpytop
+#bindsym $mod+b exec $term -e "cointop"
 
 # ------------------------- Scratchpad -------------------------
 
@@ -542,12 +542,12 @@ bindsym $mod+backslash [instance="ncspot"] scratchpad show
 bindsym $mod+plus [instance="pulsemixer"] scratchpad show
 bindsym $mod+Shift+Tab move scratchpad 
 
-# ------------------------- fzf scripts -------------------------
-bindsym $mod+ae exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_ranger.sh
-bindsym $mod+aring exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_index.sh
-
-bindsym $mod+Shift+n     exec $term -e zsh ~/Scripts/Fzf/fzf_index.sh
-bindsym $mod+Shift+m     exec $term -e zsh ~/Scripts/Fzf/fzf_zhistory.sh
+## ------------------------- fzf scripts -------------------------
+#bindsym $mod+ae exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_ranger.sh
+#bindsym $mod+aring exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_index.sh
+#
+#bindsym $mod+Shift+n     exec $term -e zsh ~/Scripts/Fzf/fzf_index.sh
+#bindsym $mod+Shift+m     exec $term -e zsh ~/Scripts/Fzf/fzf_zhistory.sh
 
 
 # ============================== Alacritty ============================== 
@@ -576,16 +576,6 @@ bindsym $mod+Shift+m     exec $term -e zsh ~/Scripts/Fzf/fzf_zhistory.sh
 #bindsym  $mod+0xe6 exec $term -e ranger $dir3
 #bindsym  $mod+Shift+0x27 exec $term -e tmux -d $dir3
 
-# ===================== Media Control =================================
-# --------------------- Spotify control -----------------------------
-bindsym $mod+Insert exec --no-startup-id "playerctl -p spotify,ncspot previous"
-bindsym $mod+Delete exec --no-startup-id "playerctl -p spotify,ncspot next"
-bindsym $mod+BackSpace exec --no-startup-id "playerctl -p spotify,ncspot play-pause"
-
-# -------------------- Igonore spotify vlc -------------------------
-bindsym $mod+Shift+Insert exec --no-startup-id "playerctl -i spotify,ncspot,vlc previous"
-bindsym $mod+Shift+Delete exec --no-startup-id "playerctl -i spotify,ncspot,vlc next"
-bindsym $mod+Shift+BackSpace exec --no-startup-id "playerctl -i spotify,ncspot,vlc play-pause"
 
 # ==================== Move workspaces ====================
 set $mode_move_workspaces [D]iagnostisk fysikk, [F]ysikk, [I]nformatikk, [G]eologi, [K]jerne, Fysikk
