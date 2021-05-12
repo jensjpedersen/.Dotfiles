@@ -1259,23 +1259,23 @@ xkb_symbols "pc+no+inet(evdev)+level3(lalt_switch)+capslock(escape)" {
     };
     key <AD06> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [               y,               Y,       leftarrow,             yen ]
+        symbols[Group1]= [               y,               Y,       asterisk,             yen ]
     };
     key <AD07> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [               u,               U,       downarrow,         uparrow ]
+        symbols[Group1]= [               u,               U,       7,         uparrow ]
     };
     key <AD08> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [               i,               I,      rightarrow,        idotless ]
+        symbols[Group1]= [               i,               I,      8,        idotless ]
     };
     key <AD09> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               o,               O,              oe,              OE ]
+        symbols[Group1]= [               o,               O,              9,              OE ]
     };
     key <AD10> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               p,               P,        Greek_pi,        Greek_PI ]
+        symbols[Group1]= [               p,               P,        backslash,        Greek_PI ]
     };
     key <AD11> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
@@ -1309,27 +1309,27 @@ xkb_symbols "pc+no+inet(evdev)+level3(lalt_switch)+capslock(escape)" {
     };
     key <AC06> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               h,               H,         hstroke,         Hstroke ]
+        symbols[Group1]= [               h,               H,         equal,         Hstroke ]
     };
     key <AC07> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [               j,               J,       dead_hook,       dead_horn ]
+        symbols[Group1]= [               j,               J,       4,       dead_horn ]
     };
     key <AC08> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [               k,               K,             kra,       ampersand ]
+        symbols[Group1]= [               k,               K,             5,       ampersand ]
     };
     key <AC09> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               l,               L,         lstroke,         Lstroke ]
+        symbols[Group1]= [               l,               L,         6,         Lstroke ]
     };
     key <AC10> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [          oslash,          Oslash,      dead_acute, dead_doubleacute ]
+        symbols[Group1]= [          oslash,          Oslash,      less, dead_doubleacute ]
     };
     key <AC11> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [              ae,              AE, dead_circumflex,      dead_caron ]
+        symbols[Group1]= [              ae,              AE, greater,      dead_caron ]
     };
     key <TLDE> {
         type= "FOUR_LEVEL",
@@ -1362,23 +1362,23 @@ xkb_symbols "pc+no+inet(evdev)+level3(lalt_switch)+capslock(escape)" {
     };
     key <AB06> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               n,               N,               n,               N ]
+        symbols[Group1]= [               n,               N,               plus,               N ]
     };
     key <AB07> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [               m,               M,              mu,       masculine ]
+        symbols[Group1]= [               m,               M,              1,       masculine ]
     };
     key <AB08> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [           comma,       semicolon,    dead_cedilla,     dead_ogonek ]
+        symbols[Group1]= [           comma,       semicolon,    2,     dead_ogonek ]
     };
     key <AB09> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [          period,           colon,        ellipsis,  periodcentered ]
+        symbols[Group1]= [          period,           colon,        3,  periodcentered ]
     };
     key <AB10> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [           minus,      underscore,          endash,          emdash ]
+        symbols[Group1]= [           minus,      underscore,          minus,          emdash ]
     };
     key <RTSH> {         [         Shift_R ] };
     key <KPMU> {
@@ -1391,7 +1391,7 @@ xkb_symbols "pc+no+inet(evdev)+level3(lalt_switch)+capslock(escape)" {
     };
     key <SPCE> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [           space,           space,    nobreakspace,           U202F ]
+        symbols[Group1]= [           space,           space,    0,           U202F ]
     };
     key <CAPS> {         [          Escape ] };
     key <FK01> {
