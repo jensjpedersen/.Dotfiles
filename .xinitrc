@@ -4,6 +4,8 @@
 #
 # Executed by startx (run your window manager from here)
 
+test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY # start custom keyboard layout
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
