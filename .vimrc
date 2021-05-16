@@ -1,3 +1,9 @@
+"       _                    
+"__   _(_)_ __ ___  _ __ ___ 
+"\ \ / / | '_ ` _ \| '__/ __|
+" \ V /| | | | | | | | | (__ 
+"(_)_/ |_|_| |_| |_|_|  \___|
+"
 "map pacman ctags - required for tagslist
 "aur yc 
 " auto install vim-plug
@@ -28,10 +34,13 @@ Plug 'mattn/emmet-vim' " html
 Plug 'tpope/vim-fugitive' " git plugin
 Plug 'christoomey/vim-tmux-navigator' "Navigation between vim and tmux
 Plug 'benmills/vimux' "vim tmux compatibility
-Plug 'ap/vim-css-color' "Show hex colors
+"Plug 'RRethy/vim-hexokinase' "Show hex colors
 Plug 'justinmk/vim-sneak' "naviagation
+Plug 'easymotion/vim-easymotion' 
+"Plug 'wellle/targets.vim' " better text objects
 Plug 'mhinz/vim-startify' "start page
 Plug 'preservim/nerdtree' 
+"Plug 'dbeniamine/cheat.sh-vim' "cheat sheet"
 call plug#end()
 
 set nocompatible
@@ -76,6 +85,17 @@ set laststatus=2	   " lightline
 
 let mapleader = " "
 let maplocalleader = "," 
+
+"" syntax higligthing for ocatave and matlab
+au BufRead,BufNewFile *.m set filetype=octave
+
+" Use keywords from Octave syntax language file for autocomplete
+if has("autocmd") && exists("+omnifunc")
+   autocmd Filetype octave
+   \ if &omnifunc == "" |
+   \ setlocal omnifunc=syntaxcomplete#Complete |
+   \ endif
+endif
 
 " Latex specific settings
 autocmd BufNewFile,BufRead *.tex 
@@ -154,45 +174,71 @@ let g:vimtex_quickfix_mode=0
 let conceallevel=1
 let g:tex_conceal='abdmg'
 
+" Vim startify
+let g:startify_bookmarks = [ {'v': '~/.vimrc'}, {'w': '~/vimwiki/index.md'}
+            \, {'p': '/home/jensjp/vimwiki/Plan/index.md' }
+            \, {'m': '/home/jensjp/Sync/FAM/Master/index.md'}
+            \ ]
+
+
+
+
+
+" Sneak settings
+let g:sneak#use_ic_scs = 1 " case insensitive
+
 " ==================== Keybindings ================================
 " Ranger file explorer 
 command! -nargs=* RunSilent
       \ | execute ':silent !'.'<args>'
       \ | execute ':redraw!'
 
+nnoremap Q !!$SHELL<CR>
+nnoremap <bar> !!genius <CR>
 nnoremap <leader>f :RunSilent ranger<CR>
-"nnoremap <leader>s G gg :redraw! <CR>
-nnoremap <leader>j :w<CR>:silent !echo "python %" > /tmp/vimpipe <CR>:redraw!<CR>
-nnoremap <leader>c :w<CR>:silent !echo "clear" > /tmp/vimpipe <CR>:redraw!<CR>
+nnoremap <localleader>t :RunSilent tig<CR>
 
-nnoremap <leader>k :w<CR>:RunSilent kill $(pgrep -f "python %") <CR>
-nnoremap <leader>l :e % <CR>
+nnoremap <leader>s :!curl cht.sh/bash/
 
+nnoremap <leader>e :e % <CR>
+
+" Markdown
 nmap <localleader>mm :w<CR>: RunSilent pandoc % -t latex -o %:r.pdf <CR>
 nmap <localleader>ms :w<CR>: RunSilent pandoc % -t beamer -o %:r.pdf <CR> " Make slide show
 nmap <localleader>mv :w<CR>: RunSilent mupdf %:r.pdf & <CR> 
-" Run python
-nnoremap <localleader>pr :w<CR>:!python %<CR>
-nnoremap <leader>s :w<CR>:!python %<CR>
+
+" enable spell checker
+nnoremap <F1> :set nospell<CR>
+nnoremap <F2> :set spell spelllang=en,nb<CR>
+
+" source .vimrc
+nnoremap <F3> :source $MYVIMRC<CR>
 
 " Emmet key
-let g:user_emmet_leader_key='<C-F>'
+"let g:user_emmet_leader_key='<C-F>'
 
 "Exit search
 nnoremap <silent> <esc><esc> :noh<return><esc>
+"
+" Git fugitive mappings
+nnoremap <localleader>g :Git<CR>
+nnoremap <localleader>s :Git status<CR>
+nnoremap <localleader>p :Git push<CR>
+nnoremap <localleader>c :Git commit<CR>
+nnoremap <localleader>a :Git add %<CR>
+nnoremap <localleader>l :Git log<CR>
+nnoremap <localleader>d :Gdiffsplit<CR>
+
 
 " fzf mappings
-nnoremap <leader>p :Files<return>
-nnoremap <leader>r :Rg<CR>
-nnoremap <leader>g :BLines<return>
+nnoremap <leader>p :Files<CR>
+nnoremap <leader>r :Rg!<CR>
+nnoremap <leader>g :BLines<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
+nnoremap <localleader>f :GFiles<CR>
 
-" vimux mappings
-nnoremap <Leader>vp :w<CR>:VimuxPromptCommand<CR>
-nnoremap <Leader>vl :w<CR>:VimuxRunLastCommand<CR>
-nnoremap <Leader>vi :VimuxInspectRunner<CR>
-nnoremap <Leader>vc :VimuxInterruptRunner<CR>
-nnoremap <Leader>vz :VimuxZoomRunner<CR>
+
 
 " vimwiki bindings
 "nunmap <Space>wt 
@@ -215,8 +261,17 @@ let g:tagbar_width = 50
 " vim sneak
 nmap ø <Plug>Sneak_s
 nmap Ø <Plug>Sneak_S
+" visual-mode
+"xmap ø <Plug>Sneak_s
+"xmap Ø <Plug>Sneak_S
+" operator-pending-mode
+omap ø <Plug>Sneak_s
+omap Ø <Plug>Sneak_S
+
+
 " Tab navigation
 nnoremap <leader>n :tabNext<CR>
+nnoremap <leader>N :tabPrevious<CR>
 
 
 "split navigations
@@ -235,11 +290,18 @@ imap <C-j> <Esc>:exec "normal f" . leavechar<CR>a
 
 " vimwiki colorscheme
 hi VimwikiHeader1 ctermfg=10 cterm=Bold
-hi VimwikiHeader2 ctermfg=5 cterm=Bold
+hi VimwikiHeader2 ctermfg=15 cterm=Bold
 hi VimwikiHeader3 ctermfg=12 cterm=Bold
 hi VimwikiHeader4 ctermfg=15 cterm=Bold
+"hi VimwikiHeader5 ctermfg=9 cterm=Bold
+"hi VimwikiHeader6 ctermfg=3 cterm=Bold
+
 hi VimwikiHeader5 ctermfg=9 cterm=Bold
-hi VimwikiHeader6 ctermfg=3 cterm=Bold
+hi VimwikiHeader6 ctermfg=4 cterm=Bold
+hi VimwikiPre ctermfg=3
 
 "hi markdownH1 ctermfg=5
 "hi markdownH2 guifg=#317849 gui=bold
+"
+
+
