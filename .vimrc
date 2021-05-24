@@ -24,7 +24,7 @@ Plug 'mbbill/undotree'
 "Plug 'vifm/vifm.vim'
 Plug 'lervag/vimtex'		 " Latex
 Plug 'vimwiki/vimwiki'		 " vimwiki
-Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax
+"Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax
 Plug 'ervandew/supertab'    " supertab (make YCM compatible with UltiSnips)
 Plug 'preservim/tagbar' 
 "Plug 'francoiscabrol/ranger.vim'
@@ -34,13 +34,12 @@ Plug 'mattn/emmet-vim' " html
 Plug 'tpope/vim-fugitive' " git plugin
 Plug 'christoomey/vim-tmux-navigator' "Navigation between vim and tmux
 Plug 'benmills/vimux' "vim tmux compatibility
-"Plug 'RRethy/vim-hexokinase' "Show hex colors
 Plug 'justinmk/vim-sneak' "naviagation
 Plug 'easymotion/vim-easymotion' 
-"Plug 'wellle/targets.vim' " better text objects
+Plug 'wellle/targets.vim' " better text objects
 Plug 'mhinz/vim-startify' "start page
 Plug 'preservim/nerdtree' 
-"Plug 'dbeniamine/cheat.sh-vim' "cheat sheet"
+Plug 'dbeniamine/cheat.sh-vim' "cheat sheet"
 call plug#end()
 
 set nocompatible
@@ -130,6 +129,7 @@ let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
+nnoremap gtn <Plug>VimwikiNextTask "standard gnt - fucks with gn commands
 
 " ycm settings
 set completeopt-=preview                " Hides preview window
@@ -280,6 +280,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+""resize splits
+"nnoremap <C-W-J> :resize -5<CR>
+"nnoremap <C-W-K> :resize +5<CR>
+"nnoremap <C-W-L> :vertical resize -5<CR>
+"nnoremap <C-W-H> :vertical resize +5<CR>
 
 
 " Auto closing bracets

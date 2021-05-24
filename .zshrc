@@ -219,11 +219,14 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ========================= Aliases =========================
+# ranger
+alias r="ranger"
+alias v="vim"
 # set alias for git and dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 #alias vim="nvim"
 alias trash='/home/jensjp/.local/share/Trash/files'
-alias matlab="matlab -nosplash -nodesktop"
+alias mlab="matlab -nosplash -nodesktop"
 
 # ======================== FZF =========================
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden'

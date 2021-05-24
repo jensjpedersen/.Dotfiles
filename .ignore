@@ -5,4 +5,8 @@
 *.fls
 *.log
 *.toc
+*.out
 
+*.png
+*.xopp
+*.pdf

@@ -1275,7 +1275,7 @@ xkb_symbols "pc+no+inet(evdev)+level3(lalt_switch)+capslock(escape)" {
     };
     key <AD10> {
         type= "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1]= [               p,               P,        backslash,        Greek_PI ]
+        symbols[Group1]= [               p,               P,        slash,        Greek_PI ]
     };
     key <AD11> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",

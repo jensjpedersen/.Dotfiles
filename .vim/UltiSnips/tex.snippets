@@ -34,11 +34,11 @@ $0
 endsnippet
 
 snippet par "Paragraph" 
-\paragraph{$1}
+\paragraph{$1} $0
 endsnippet
 
 snippet bf "bold text" i
-\textbf{$1}$0
+\textbf{$1} $0
 endsnippet
 
 snippet bfm "Bold symbol" i
@@ -49,7 +49,15 @@ snippet it "italic text" i
 \textit{$1}$0
 endsnippet
 
-snippet ref "cross referance"
+snippet str "math sring" i
+\texorpdfstring{\$\bm{$1 }\$}{MATH}$0
+endsnippet
+
+snippet " "quotes" i
+\`\`$1'' $0
+endsnippet
+
+snippet ref "cross referance" i 
 \ref{$1} $0
 endsnippet
 
@@ -65,8 +73,13 @@ snippet box "Begin box"
 \boxed{$1} $0
 endsnippet
 
-snippet er "math ref" i
+# ========================= Math =========================
+snippet eqr "math ref" i
 \eqref{$1} $0
+endsnippet
+
+snippet sn "sietific notation" i
+\num{$1} $0
 endsnippet
 
 # Math general
@@ -90,7 +103,7 @@ snippet _ "Sub script" i
 _{$1}$0 
 endsnippet
 
-snippet vec "Vector" iA
+snippet vec "Vector" i
 \vec{$1}$0
 endsnippet
 
@@ -107,7 +120,7 @@ snippet int "Integral" i
 endsnippet
 
 snippet im "Inline math" i
-$$1$$0
+\$$1\$$0
 endsnippet
 
 snippet br "Big round bracets" i 
@@ -118,7 +131,7 @@ snippet bs "Big square bracets" i
 \left[$1 \right]$0
 endsnippet
 
-# ------------ Environments ---------------------
+# ========================= Environments =========================
 snippet beg "Begin environment"
 \begin{$1}
 	$0
@@ -131,7 +144,13 @@ snippet eq "Begin equation"
 \end{equation*}
 endsnippet 
 
-snippet align "begin align" 
+snippet eqn "Begin equation"
+\begin{equation}
+	$0
+\end{equation}
+endsnippet 
+
+snippet ali "begin align" 
 \begin{align*}
 	$0
 \end{align*}
@@ -148,14 +167,14 @@ snippet ma "Begin matrix"
 $0
 endsnippet
 
-snippet enum "Begin enumerate" 
+snippet enum "Begin enumerate" b
 \begin{enumerate}
 	$1
 \end{enumerate}
 $0
 endsnippet
 
-snippet item "Begin itemize"
+snippet item "Begin itemize" b
 \begin{itemize}
 	$1
 \end{itemize}
@@ -217,12 +236,14 @@ $0
 endsnippet
 
 
-# --------------- Templates --------------------------------
+# ========================= Templates =========================
 snippet article "Article template"
 \documentclass[a4paper,10pt,norsk]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[norsk]{babel}
 \usepackage{graphicx, verbatim, amsmath, amsfonts, geometry, float, import, bm}
+\usepackage{siunitx} % converts expression to SI units/notation , \num{10e-10}
+\usepackage[hidelinks]{hyperref}
 
 \setlength{\parindent}{0mm}
 \setlength{\parskip}{1.5mm}
@@ -265,8 +286,16 @@ snippet ti "tilde" i
 \tilde{$1}$0
 endsnippet
 #------------------------- Math -------------------------
+snippet deg "degree" i
+^\circ $0
+endsnippet
+
 snippet -> "rigth arrow" iA
  \rightarrow $0
+endsnippet
+
+snippet <- "left arrow" iA
+ \leftarrow $0
 endsnippet
 
 snippet => "Rigth arrow" iA
@@ -274,7 +303,27 @@ snippet => "Rigth arrow" iA
 endsnippet
 
 snippet <> "Left rigth arrow" iA
-\Leftrightarrow $0
+ \Leftrightarrow $0
+endsnippet
+
+snippet dt "time derivative" i
+\frac{d$1}{dt}$0
+endsnippet
+
+snippet dtp "time derivative" i
+\frac{\partial $1}{\partial t}$0
+endsnippet
+
+snippet pd "partial derivative" i
+\partial $0
+endsnippet
+
+snippet in "infinity" i
+\infty $0
+endsnippet
+
+snippet na "nabla" i
+\nabla
 endsnippet
 #------------------------- Greek -------------------------
 snippet al "alpha" i
