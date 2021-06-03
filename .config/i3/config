@@ -187,9 +187,6 @@ bindsym $mod+c exec --no-startup-id clipmenu -nf "$light0" -nb "$dark0" -sb "$ne
 
 
 
-# Moving workspaces between screens 
-bindsym $mod+r move workspace to output right
-
 # ====================== Workspaces =============================
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -470,13 +467,14 @@ mode "$bluetooth" {
 #    bindsym Escape mode "default"
 #    }
 # ------------------------- grapics disabled ------------------------- 
-set $monitor [L]VDS1, DP-[2], DP-[3], [D]ual 
+set $monitor [L]VDS1, DP-[2], DP-[3], [D]ual, [S]tack
 mode "$monitor" {
     bindsym l exec xrandr --output LVDS-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off
     bindsym 2 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-3 --off
     #bindsym 3 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal
     bindsym 3 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal
     bindsym d exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-3 --mode 1920x1080 --pos 1920x0 --rotate normal
+    bindsym s exec xrandr --output LVDS-1 --primary --mode 1920x1080 --pos 0x1080 --rotate normal --output VGA-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off --output DP-3 --off
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"

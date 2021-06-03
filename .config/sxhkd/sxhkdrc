@@ -32,3 +32,6 @@ shift+space;{c,m,w,h}
 shift+space;{t,T,b}
     alacritty --working-directory=$HOME -e {htop,bpytop,cointop}
 
+# ========================= i3-msg =========================
+super+r
+    i3-msg move workspace to output right ; i3-msg move workspace to output up
