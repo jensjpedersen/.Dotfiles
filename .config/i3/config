@@ -467,9 +467,10 @@ mode "$bluetooth" {
 #    bindsym Escape mode "default"
 #    }
 # ------------------------- grapics disabled ------------------------- 
-set $monitor [L]VDS1, DP-[2], DP-[3], [D]ual, [S]tack
+set $monitor [L]VDS1, DP-[1], DP-[2], DP-[3], [D]ual, [S]tack
 mode "$monitor" {
     bindsym l exec xrandr --output LVDS-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off
+    bindsym 1 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off --output DP-3 --off
     bindsym 2 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-3 --off
     #bindsym 3 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal
     bindsym 3 exec xrandr --output LVDS-1 --off --output VGA-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal
@@ -481,10 +482,13 @@ mode "$monitor" {
     }
 # ----------------- enable/disable screen saver ---------------------------------
 
-set $screen_saver Screen saver on [y], off [n]
+set $screen_saver Screen saver on [y], off [n], brightness: [2]5%, [5]0%, [1]00%
 mode "$screen_saver" {
     bindsym n exec xset s off
     bindsym y exec xset s 300 
+    bindsym 1 exec --no-startup-id redshift -P -O 3000 -b 1
+    bindsym 2 exec --no-startup-id redshift -P -O 3000 -b 0.25
+    bindsym 5 exec --no-startup-id redshift -P -O 3000 -b 0.5
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -494,7 +498,7 @@ mode "$screen_saver" {
 
 # -------------------------- settings menu --------------------------------------
 
-set $settings [A]udio output, [B]bluetooth, [M]onitor, [S]creen saver, Keyboard [l]ayout  
+set $settings [A]udio output, [B]bluetooth, [M]onitor, [S]creen, Keyboard [l]ayout  
 mode "$settings" {
     # set audio output
     bindsym a mode "$audio_output"

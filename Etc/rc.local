@@ -1,6 +1,6 @@
 #!/bin/sh -e
 # Script needs sudo privs
 # sets trackpoing parameters at startup
-echo 130 | tee /sys/devices/platform/i8042/serio1/serio2/sensitivity
-echo 100 | tee /sys/devices/platform/i8042/serio1/serio2/speed
+echo 140 > /sys/devices/platform/i8042/serio1/serio2/sensitivity
+echo 50 > /sys/devices/platform/i8042/serio1/serio2/speed
 exit 0

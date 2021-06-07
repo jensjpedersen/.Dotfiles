@@ -226,7 +226,7 @@ nnoremap <localleader>s :Git status<CR>
 nnoremap <localleader>p :Git push<CR>
 nnoremap <localleader>c :Git commit<CR>
 nnoremap <localleader>a :Git add %<CR>
-nnoremap <localleader>l :Git log<CR>
+nnoremap <localleader>h :Git log<CR>
 nnoremap <localleader>d :Gdiffsplit<CR>
 
 
@@ -238,6 +238,13 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
 nnoremap <localleader>f :GFiles<CR>
 
+" Quick fix list
+nnoremap <leader>q :copen<CR>
+nnoremap <leader>n :cn<CR>
+nnoremap <leader>m :cp<CR>
+
+" vimgrep
+nnoremap <leader>/ :vimgrep! <c-r>/ ./*
 
 
 " vimwiki bindings
@@ -270,8 +277,8 @@ omap Ø <Plug>Sneak_S
 
 
 " Tab navigation
-nnoremap <leader>n :tabNext<CR>
-nnoremap <leader>N :tabPrevious<CR>
+"nnoremap <leader>n :tabn<CR>
+"nnoremap <C-W>N :tabp<CR>
 
 
 "split navigations
