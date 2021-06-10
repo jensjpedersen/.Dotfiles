@@ -244,14 +244,12 @@ nnoremap <leader>n :cn<CR>
 nnoremap <leader>m :cp<CR>
 
 " vimgrep
-nnoremap <leader>/ :vimgrep! <c-r>/ ./*
+nnoremap <leader>/ :vimgrep /<c-r>//gd ./*
 
 
 " vimwiki bindings
 "nunmap <Space>wt 
 nnoremap <Leader>wt :VimwikiTable 
-"go to def
-nnoremap <silent> <leader>d  :YcmCompleter GoTo<CR>
 "nnoremap <leader>b '' 
 
 " Undo tree

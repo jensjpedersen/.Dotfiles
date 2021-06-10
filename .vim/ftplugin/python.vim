@@ -14,3 +14,6 @@ nnoremap <Leader>vi :VimuxInspectRunner<CR>
 nnoremap <Leader>vk :VimuxInterruptRunner<CR>
 nnoremap <Leader>vz :VimuxZoomRunner<CR>
 nnoremap <Leader>vc :VimuxClearTerminalScreen<CR>
+
+"go to def
+nnoremap <silent> <Leader>d  :YcmCompleter GoTo<CR>
