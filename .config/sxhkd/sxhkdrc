@@ -15,17 +15,15 @@ super+shift+Delete
 	playerctl -i spotify,ncspot,vlc next
 super+shift+BackSpace 
 	playerctl -i spotify,ncspot,vlc play-pause
- 
-super+n
-    alacritty -e ranger
 
-super+m
-    alacritty -e vim
+# ========================= Applications =========================
+super+{n,m,comma,period}
+    alacritty --working-directory=$HOME -e {ranger,vim,calcurse,htop}
 
-super+comma 
-    alacritty -e calcurse
+super+shift+{m,period}
+    alacritty --working-directory=$HOME -e {vim -c VimwikiIndex,bpytop}
 
-
+# ========================= Scripts =========================
 shift+space;{c,m,w,h,t}
     alacritty --working-directory=$HOME -e sh ${HOME}/Scripts/Fzf/{config_fzf.sh,master_fzf.sh,wiki_fzf.sh,history_fzf.sh,tmux_fzf.sh}
 
