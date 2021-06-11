@@ -32,6 +32,7 @@ Plug 'preservim/tagbar'
 Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim' " html
 Plug 'tpope/vim-fugitive' " git plugin
+Plug 'airblade/vim-gitgutter' 
 Plug 'christoomey/vim-tmux-navigator' "Navigation between vim and tmux
 Plug 'benmills/vimux' "vim tmux compatibility
 Plug 'justinmk/vim-sneak' "naviagation
@@ -228,15 +229,24 @@ nnoremap <localleader>c :Git commit<CR>
 nnoremap <localleader>a :Git add %<CR>
 nnoremap <localleader>h :Git log<CR>
 nnoremap <localleader>d :Gdiffsplit<CR>
+nnoremap <localleader>r :Gread<CR> " Git checkout current file
 
 
 " fzf mappings
-nnoremap <leader>p :Files<CR>
+"nnoremap <leader>p :Files<CR>
 nnoremap <leader>r :Rg!<CR>
 nnoremap <leader>g :BLines<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
-nnoremap <localleader>f :GFiles<CR>
+"nnoremap <localleader>f :GFiles<CR>
+
+" Use GFiles if inside git repository
+silent! !git rev-parse --is-inside-work-tree
+if v:shell_error == 0
+    nnoremap <leader>p :GFiles<CR>
+else
+    noremap <leader>p :Files<CR>
+endif
 
 " Quick fix list
 nnoremap <leader>q :copen<CR>

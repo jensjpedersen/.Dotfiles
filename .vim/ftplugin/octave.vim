@@ -8,3 +8,6 @@ nnoremap <Leader>vk :VimuxInterruptRunner<CR>
 nnoremap <Leader>vz :VimuxZoomRunner<CR>
 nnoremap <leader>vj :w<CR>:VimuxRunCommand("run " . bufname("%"))<CR>
 nnoremap <leader>vc :w<CR>:VimuxRunCommand("clc")<CR>
+
+" go to first instance of word / 
+nnoremap <leader>d :norm *<CR> :vimgrep /<c-r>//g %<CR>
