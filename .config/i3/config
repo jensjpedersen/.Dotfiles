@@ -6,7 +6,7 @@ exec --no-startup-id redshift -P -O 3000
 exec --no-startup-id picom
 exec --no-startup-id clipmenud
 
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/Wallpaper/wallpapersden.com_new-zealand-orange-mountain-sunset_1920x1080.jpg
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/Wallpaper/minimalist-landscape-cgi-ay.jpg
 
 # ------------------------- startup scripts -------------------------
 exec --no-startup-id $HOME/Scripts/Huion/Huion_DP-1-2.sh
@@ -171,14 +171,13 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+a floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus mode_toggle
 
 # focus the parent container
 #bindsym $mod+a focus parent
-bindsym $mod+a exec arandr
 #
 # focus the child container
 #bindsym $mod+c focus child
@@ -314,6 +313,8 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Toggl Desktop"] floating enable
 for_window [class="matplotlib"] floating enable
 for_window [class="scan"] floating enable
+
+
 
 
 
@@ -482,10 +483,11 @@ mode "$monitor" {
     }
 # ----------------- enable/disable screen saver ---------------------------------
 
-set $screen_saver Screen saver on [y], off [n], brightness: [2]5%, [5]0%, [1]00%
+set $screen_saver Screen saver on [y], off [n], redshift off [x], brightness: [2]5%, [5]0%, [1]00%
 mode "$screen_saver" {
     bindsym n exec xset s off
     bindsym y exec xset s 300 
+    bindsym x exec redshift -x
     bindsym 1 exec --no-startup-id redshift -P -O 3000 -b 1
     bindsym 2 exec --no-startup-id redshift -P -O 3000 -b 0.25
     bindsym 5 exec --no-startup-id redshift -P -O 3000 -b 0.5
@@ -546,18 +548,43 @@ bindsym $mod+w exec brave
 #bindsym $mod+Shift+period exec $term -e bpytop
 #bindsym $mod+b exec $term -e "cointop"
 
-# ------------------------- Scratchpad -------------------------
+# ========================= Scratchpad =========================
+
+# ------------------------- ranger -------------------------
+#for_window [instance="ranger"] floating enable
+#for_window [instance="ranger"] resize grow left 350
+#for_window [instance="ranger"] resize grow right 350 
+#for_window [instance="ranger"] resize grow up 100
+#for_window [instance="ranger"] resize grow down 100
 
 for_window [instance="ranger"] move window to scratchpad 
-for_window [instance="ncspot"] move window to scratchpad 
-for_window [instance="pulsemixer"] move window to scratchpad 
 exec $term --class ranger -e ranger
-exec $term --class ncspot -e ncspot
-exec $term --class pulsemixer -e pulsemixer
 bindsym $mod+Tab [instance="ranger"] scratchpad show
+
+# ------------------------- ncspot  -------------------------
+#for_window [instance="ncspot"] floating enable
+#for_window [instance="ncspot"] resize grow left 350
+#for_window [instance="ncspot"] resize grow right 350 
+#for_window [instance="ncspot"] resize grow up 100
+#for_window [instance="ncspot"] resize grow down 100
+
+for_window [instance="ncspot"] move window to scratchpad 
+exec $term --class ncspot -e ncspot
 bindsym $mod+backslash [instance="ncspot"] scratchpad show
+
+# ------------------------- pulsemixer -------------------------
+#for_window [instance="pulsemixer"] floating enable
+#for_window [instance="pulsemixer"] resize grow left 350
+#for_window [instance="pulsemixer"] resize grow right 350 
+#for_window [instance="pulsemixer"] resize grow up 100
+#for_window [instance="pulsemixer"] resize grow down 100
+
+for_window [instance="pulsemixer"] move window to scratchpad 
+exec $term --class pulsemixer -e pulsemixer
 bindsym $mod+plus [instance="pulsemixer"] scratchpad show
+
 bindsym $mod+Shift+Tab move scratchpad 
+
 
 ## ------------------------- fzf scripts -------------------------
 #bindsym $mod+ae exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_ranger.sh

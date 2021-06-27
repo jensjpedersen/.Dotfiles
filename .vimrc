@@ -41,6 +41,7 @@ Plug 'wellle/targets.vim' " better text objects
 Plug 'mhinz/vim-startify' "start page
 Plug 'preservim/nerdtree' 
 Plug 'dbeniamine/cheat.sh-vim' "cheat sheet"
+Plug 'blindFS/vim-taskwarrior' " task manegment
 call plug#end()
 
 set nocompatible
@@ -172,11 +173,11 @@ let g:tex_flavor='latex'
 "let g:vimtex_view_method='zathura'
 let g:vimtex_view_method='mupdf'
 let g:vimtex_quickfix_mode=0
-let conceallevel=1
-let g:tex_conceal='abdmg'
+"let conceallevel=1
+"let g:tex_conceal='abdmg'
 
 " Vim startify
-let g:startify_bookmarks = [ {'v': '~/.vimrc'}, {'w': '~/vimwiki/index.md'}
+let g:startify_bookmarks = [ {'c': '~/.vimrc'}, {'w': '~/vimwiki/index.md'}
             \, {'p': '/home/jensjp/vimwiki/Plan/index.md' }
             \, {'m': '/home/jensjp/Sync/FAM/Master/index.md'}
             \ ]
@@ -187,6 +188,9 @@ let g:startify_bookmarks = [ {'v': '~/.vimrc'}, {'w': '~/vimwiki/index.md'}
 
 " Sneak settings
 let g:sneak#use_ic_scs = 1 " case insensitive
+
+" Gitgutter settings
+let g:gitgutter_map_keys = 0
 
 " ==================== Keybindings ================================
 " Ranger file explorer 
@@ -229,32 +233,32 @@ nnoremap <localleader>c :Git commit<CR>
 nnoremap <localleader>a :Git add %<CR>
 nnoremap <localleader>h :Git log<CR>
 nnoremap <localleader>d :Gdiffsplit<CR>
-nnoremap <localleader>r :Gread<CR> " Git checkout current file
+nnoremap <localleader>r :G reflog<CR>  
 
 
 " fzf mappings
-"nnoremap <leader>p :Files<CR>
+nnoremap <leader>p :Files<CR>
 nnoremap <leader>r :Rg!<CR>
 nnoremap <leader>g :BLines<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
-"nnoremap <localleader>f :GFiles<CR>
+nnoremap <localleader>f :GFiles<CR>
 
 " Use GFiles if inside git repository
-silent! !git rev-parse --is-inside-work-tree
-if v:shell_error == 0
-    nnoremap <leader>p :GFiles<CR>
-else
-    noremap <leader>p :Files<CR>
-endif
+"silent! !git rev-parse --is-inside-work-tree
+"if v:shell_error == 0
+"    nnoremap <leader>p :GFiles<CR>
+"else
+"    noremap <leader>p :Files<CR>
+"endif
 
 " Quick fix list
-nnoremap <leader>q :copen<CR>
-nnoremap <leader>n :cn<CR>
-nnoremap <leader>m :cp<CR>
+nnoremap <leader>c :copen<CR>
+nnoremap <C-c> :cn<CR>
+nnoremap <C-x> :cp<CR>
 
 " vimgrep
-nnoremap <leader>/ :vimgrep /<c-r>//gd ./*
+nnoremap <leader>/ :vimgrep /<c-r>//g ./*<CR>:noh<CR>
 
 
 " vimwiki bindings
@@ -267,6 +271,9 @@ nnoremap <silent> <leader>u  :UndotreeToggle<CR>
 
 " NERD Tree
 nnoremap <silent> <leader>a :NERDTreeToggle<CR>
+
+" TaskWarrior
+nnoremap <silent> <leader>q :TW<CR>
 
 " Tagbar
 nnoremap <leader>t  :TagbarToggle<CR>
