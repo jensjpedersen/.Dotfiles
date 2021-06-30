@@ -227,6 +227,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 #alias vim="nvim"
 alias trash='/home/jensjp/.local/share/Trash/files'
 alias mlab="matlab -nosplash -nodesktop"
+alias t="task"
 
 # ======================== FZF =========================
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden'
