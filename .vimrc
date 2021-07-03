@@ -42,6 +42,7 @@ Plug 'mhinz/vim-startify' "start page
 Plug 'preservim/nerdtree' 
 Plug 'dbeniamine/cheat.sh-vim' "cheat sheet"
 Plug 'blindFS/vim-taskwarrior' " task manegment
+Plug 'itchyny/calendar.vim' " calendar
 call plug#end()
 
 set nocompatible
@@ -182,7 +183,16 @@ let g:startify_bookmarks = [ {'c': '~/.vimrc'}, {'w': '~/vimwiki/index.md'}
             \, {'m': '/home/jensjp/Sync/FAM/Master/index.md'}
             \ ]
 
-
+let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          "\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
+let g:startify_files_number = 5 
+let g:startify_change_to_dir = 0 " autochdir is enabled, not needed
+let g:startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
 
 
 
