@@ -1,7 +1,7 @@
 #!/bin/sh
 # Searches for git repositories and attathc/create tmux session
 
-search=$(fd -t d _git ${HOME})
+search=$(fd -t d _git$ ${HOME})
 serach_names=$(echo "${search}" | awk -F "/" '{print $NF}')
 name=$(echo "${serach_names}" | fzf --header="Tmux attach/create new session")
 dir=$(echo "${search}" | grep ${name})
