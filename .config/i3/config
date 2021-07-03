@@ -115,8 +115,7 @@ floating_modifier $mod
 
 set $term --no-startup-id alacritty
 # start a terminal
-bindsym $mod+Return exec $term 
-
+bindsym $mod+Return exec $term -e zsh /home/jensjp/Scripts/terminal_output.sh
 # kill focused window
 bindsym $mod+q kill
 
