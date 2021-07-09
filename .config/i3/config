@@ -587,9 +587,9 @@ for_window [instance="terminal"] move window to scratchpad
 exec $term --class terminal
 bindsym $mod+aring [instance="terminal"] scratchpad show
 
-for_window [instance="ipython"] move window to scratchpad 
-exec $term --class terminal -e ipython
-bindsym $mod+dead_diaeresis [instance="ipython"] scratchpad show
+for_window [instance="ptpython"] move window to scratchpad 
+exec $term --class ptpython -e ptpython
+bindsym $mod+dead_diaeresis [instance="ptpython"] scratchpad show
 ## ------------------------- fzf scripts -------------------------
 #bindsym $mod+ae exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_ranger.sh
 #bindsym $mod+aring exec --no-startup-id alacritty -e zsh ~/Scripts/Fzf/fzf_index.sh
