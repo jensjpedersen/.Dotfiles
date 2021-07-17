@@ -42,7 +42,6 @@ Plug 'mhinz/vim-startify' "start page
 Plug 'preservim/nerdtree' 
 Plug 'dbeniamine/cheat.sh-vim' "cheat sheet"
 Plug 'blindFS/vim-taskwarrior' " task manegment
-Plug 'itchyny/calendar.vim' " calendar
 call plug#end()
 
 set nocompatible
@@ -132,7 +131,7 @@ let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
-nnoremap gtn <Plug>VimwikiNextTask "standard gnt - fucks with gn commands
+"nnoremap gtn <Plug>VimwikiNextTask "standard gnt - fucks with gn commands
 
 " ycm settings
 set completeopt-=preview                " Hides preview window
@@ -241,6 +240,7 @@ nnoremap <localleader>s :Git status<CR>
 nnoremap <localleader>p :Git push<CR>
 nnoremap <localleader>c :Git commit<CR>
 nnoremap <localleader>a :Git add %<CR>
+nnoremap <localleader>u :Git add -u<CR>
 nnoremap <localleader>h :Git log<CR>
 nnoremap <localleader>d :Gdiffsplit<CR>
 nnoremap <localleader>r :G reflog<CR>  
