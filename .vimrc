@@ -24,7 +24,7 @@ Plug 'mbbill/undotree'
 "Plug 'vifm/vifm.vim'
 Plug 'lervag/vimtex'		 " Latex
 Plug 'vimwiki/vimwiki'		 " vimwiki
-"Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax
+Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax
 Plug 'ervandew/supertab'    " supertab (make YCM compatible with UltiSnips)
 Plug 'preservim/tagbar' 
 "Plug 'francoiscabrol/ranger.vim'
@@ -36,7 +36,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator' "Navigation between vim and tmux
 Plug 'benmills/vimux' "vim tmux compatibility
 Plug 'justinmk/vim-sneak' "naviagation
-Plug 'easymotion/vim-easymotion' 
 Plug 'wellle/targets.vim' " better text objects
 Plug 'mhinz/vim-startify' "start page
 Plug 'preservim/nerdtree' 
@@ -68,14 +67,19 @@ set relativenumber
 set scrolloff=8
 set autochdir
 
+set timeoutlen=1000 ttimeoutlen=0 " Fix delay on escape  
+
+let mapleader = " "
+let maplocalleader = "," 
+
 " backup
 set noswapfile
 set nobackup
+
+" til here
+
 set undodir=~/.vim/undodir     " folder for undoo tree
 set undofile                   " folder for undoo tree
-
-
-set timeoutlen=1000 ttimeoutlen=0 " Fix delay on escape  
 
 " Color-scheme
 let g:gruvbox_guisp_fallback = "bg"     " spellcheker marking
@@ -84,8 +88,6 @@ colorscheme gruvbox
 
 set laststatus=2	   " lightline
 
-let mapleader = " "
-let maplocalleader = "," 
 
 "" syntax higligthing for ocatave and matlab
 au BufRead,BufNewFile *.m set filetype=octave
@@ -201,6 +203,8 @@ let g:sneak#use_ic_scs = 1 " case insensitive
 " Gitgutter settings
 let g:gitgutter_map_keys = 0
 
+
+
 " ==================== Keybindings ================================
 " Ranger file explorer 
 command! -nargs=* RunSilent
@@ -217,9 +221,16 @@ nnoremap <leader>s :!curl cht.sh/bash/
 nnoremap <leader>e :e % <CR>
 
 " Markdown
-nmap <localleader>mm :w<CR>: RunSilent pandoc % -t latex -o %:r.pdf <CR>
-nmap <localleader>ms :w<CR>: RunSilent pandoc % -t beamer -o %:r.pdf <CR> " Make slide show
+"nmap <localleader>mm :w<CR>: RunSilent pandoc % -t latex -o %:r.pdf <CR>
+"nmap <localleader>ms :w<CR>: RunSilent pandoc % -t beamer -o %:r.pdf <CR> " Make slide show
+nmap <localleader>mm :w<CR>:! pandoc % -t latex -o %:r.pdf <CR>
+nmap <localleader>ms :w<CR>:! pandoc % -t beamer -o %:r.pdf <CR> " Make slide show
 nmap <localleader>mv :w<CR>: RunSilent mupdf %:r.pdf & <CR> 
+nmap <localleader>mp :set filetype=pandoc<CR> 
+nmap <localleader>mw :set filetype=vimwiki<CR> 
+
+" QR-code
+nmap <localleader>qr :w<CR>:! qrencode -r % -o %:r.png<CR>
 
 " enable spell checker
 nnoremap <F1> :set nospell<CR>
@@ -268,7 +279,7 @@ nnoremap <C-c> :cn<CR>
 nnoremap <C-x> :cp<CR>
 
 " vimgrep
-nnoremap <leader>/ :vimgrep /<c-r>//g ./*<CR>:noh<CR>
+nnoremap <leader>/ :vimgrep /<c-r>//g ./*<CR>
 
 
 " vimwiki bindings
